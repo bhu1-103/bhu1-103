@@ -1,5 +1,8 @@
 ## Hi there 👋
 
+currently working on making a graphics library in legacy opengl.
+
+
 <!--
 **bhu1-103/bhu1-103** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
