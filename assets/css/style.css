@@ -1,0 +1,494 @@
+@font-face {
+    font-family: 'Persona5MenuFont';
+    src: url('../fonts/Persona5MenuFontPrototype-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Audiowide';
+    src: url('../fonts/Audiowide-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OrbitronBlack';
+    src: url('../fonts/orbitron-black.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Basic Styles */
+:root {
+    --primary-color: #FFFFFF; /* White */
+    --secondary-color: #007bff; /* Vibrant Blue, similar to P3R UI */
+    --accent-color: #FFD700; /* Gold/Yellow for subtle accents */
+    --background-color: #101010; /* Darker background */
+    --panel-background: #1a1a1a; /* Slightly lighter for panels */
+    --text-color: #e0e0e0;
+    --font-family-heading: 'Persona5MenuFont', sans-serif;
+    --font-family-body: 'Audiowide', sans-serif;
+    --font-family-display: 'OrbitronBlack', sans-serif; /* For specific impactful text */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Full viewport height */
+    overflow: hidden; /* NO SCROLLBARS */
+}
+
+body {
+    font-family: var(--font-family-body);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    position: relative; /* For absolute positioning of sections */
+}
+
+/* Animated Grid Background Overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(0, 123, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 123, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    animation: grid-pan 60s linear infinite;
+    pointer-events: none;
+    z-index: -1; /* Behind everything */
+    opacity: 0.3;
+}
+
+@keyframes grid-pan {
+    from { background-position: 0 0; }
+    to { background-position: -600px -600px; }
+}
+
+/* Subtle Noise Effect */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8HCTAAAAAXNSR0IArs4c6QAAAB9JREFUGFdjYGBgYGBgYGBgYGBgYGBgYGBgYGBgAAAB9gB+G1j51AAAAABJRU5ErkJggg==') repeat;
+    pointer-events: none;
+    z-index: -1; /* Behind everything */
+    opacity: 0.05; /* More subtle */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-heading);
+    color: var(--primary-color);
+    text-transform: uppercase; /* P3R style */
+    letter-spacing: 2px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+/* Header - Minimal top bar */
+header {
+    background-color: rgba(0, 0, 0, 0.98); /* Almost opaque */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* Fixed height for top bar */
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 95% 100%, 0 100%); /* Angular header shape */
+}
+
+.logo {
+    font-family: var(--font-family-display);
+    font-size: 2.8em;
+    color: var(--primary-color);
+    letter-spacing: 5px;
+    text-shadow: 0 0 15px rgba(0, 123, 255, 0.7);
+    transform: skewX(-10deg); /* Subtle skew for logo */
+}
+
+/* Sidebar Navigation */
+#sidebar-nav {
+    position: fixed;
+    top: 0; /* Start from the top */
+    left: 0;
+    width: 250px; /* Width of the sidebar */
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 990; /* Below header, above main content */
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.8);
+    padding-top: 120px; /* Offset for header and HUD */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%); /* Angular sidebar shape */
+}
+
+#sidebar-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#sidebar-nav ul li {
+    margin-bottom: 10px;
+}
+
+#sidebar-nav ul li a {
+    display: block;
+    font-size: 1.5em;
+    padding: 15px 30px;
+    position: relative;
+    font-family: var(--font-family-heading);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--primary-color); /* Default text color */
+    transition: color 0.3s ease, transform 0.3s ease;
+    overflow: hidden; /* Hide overflowing pseudo-elements */
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%); /* Angular button shape */
+    margin-right: 20px; /* Space for the angular cut */
+}
+
+/* Main selector background */
+#sidebar-nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary-color);
+    transform: translateX(-100%) skewX(-30deg); /* Start off-screen, skewed */
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth, fast transition */
+    z-index: -1;
+    opacity: 0.8;
+}
+
+/* Selector trail */
+#sidebar-nav ul li a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent-color); /* Gold accent for the trail */
+    transform: translateX(-100%) skewX(-30deg); /* Start off-screen, skewed */
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); /* Same transition */
+    transition-delay: 0.05s; /* Slightly delayed for trail effect */
+    z-index: -2; /* Behind the main selector */
+    opacity: 0.5;
+}
+
+#sidebar-nav ul li a:hover::before {
+    transform: translateX(0) skewX(-30deg); /* Slide in */
+}
+
+#sidebar-nav ul li a:hover::after {
+    transform: translateX(0) skewX(-30deg); /* Slide in with delay */
+}
+
+#sidebar-nav ul li a:hover {
+    color: var(--background-color); /* Text color changes to background color */
+    transform: translateX(10px) scale(1.05); /* Slide right and enlarge text */
+    text-shadow: 0 0 10px var(--primary-color); /* Subtle glow on text */
+}
+
+/* Active navigation item */
+#sidebar-nav ul li a.active-nav {
+    color: var(--background-color);
+    transform: translateX(10px) scale(1.05);
+    text-shadow: 0 0 10px var(--primary-color);
+}
+
+#sidebar-nav ul li a.active-nav::before {
+    transform: translateX(0) skewX(-30deg);
+    opacity: 1; /* Fully opaque for active */
+}
+
+#sidebar-nav ul li a.active-nav::after {
+    transform: translateX(0) skewX(-30deg);
+    opacity: 0.7; /* More opaque for active trail */
+}
+
+/* HUD Status Bar */
+#hud-status {
+    position: fixed;
+    top: 60px; /* Below header */
+    left: 250px; /* Offset by sidebar width */
+    width: calc(100% - 250px); /* Adjust width for sidebar */
+    height: 70px; /* Height of the HUD bar */
+    background-color: rgba(0, 0, 0, 0.9); /* Slightly transparent black */
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    font-family: var(--font-family-heading);
+    font-size: 1.8em;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%); /* Angular shape */
+}
+
+#hud-title {
+    color: var(--secondary-color);
+    text-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+#hud-page-indicator {
+    color: var(--accent-color);
+}
+
+/* Main Content Area - Panels */
+main {
+    position: relative;
+    width: calc(100% - 250px); /* Adjust width for sidebar */
+    height: 100%;
+    padding-top: 150px; /* Offset for fixed header + HUD */
+    margin-left: 250px; /* Offset for sidebar */
+}
+
+section {
+    position: absolute;
+    top: 150px; /* Below header + HUD */
+    left: 0;
+    width: 100%;
+    height: calc(100% - 150px); /* Fill remaining height */
+    background-color: var(--panel-background);
+    padding: 40px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden; /* Hide content overflow within section */
+    display: none; /* Hidden by default */
+    opacity: 0; /* For fade transition */
+    transform: translateX(100%) skewX(10deg); /* Initial state for slide-in */
+    transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 1; /* Default z-index */
+}
+
+section.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0) skewX(0deg);
+    z-index: 2; /* Active section on top */
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 123, 255, 0.08), transparent);
+    pointer-events: none;
+    z-index: 0;
+}
+
+section h2 {
+    text-align: left; /* P3R titles are often left-aligned within panels */
+    font-size: 3.8em;
+    margin-bottom: 40px;
+    position: relative;
+    color: var(--secondary-color);
+    padding-left: 20px;
+    border-left: 8px solid var(--accent-color); /* Thicker gold accent line */
+    transform: skewX(-5deg); /* Subtle skew for titles */
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 5px;
+    background-color: var(--primary-color);
+    bottom: -15px;
+    left: 20px;
+    transform: none; /* Remove center transform */
+}
+
+/* Staged Content Animations */
+.section-content > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+
+.stagger-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+section.active .stagger-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Hero Section Specifics */
+#hero {
+    display: flex; /* Show hero by default */
+    opacity: 1; /* Show hero by default */
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Align content to left */
+    text-align: left;
+    padding-top: 0;
+    background: none; /* Remove previous background */
+}
+
+.hero-title {
+    font-size: 5em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 25px rgba(0, 123, 255, 0.9);
+    line-height: 1.1;
+    transform: skewX(-10deg); /* More pronounced skew for hero title */
+    font-weight: 800; /* Make it bold */
+    letter-spacing: 3px;
+}
+
+.hero-subtitle {
+    font-size: 2em;
+    margin-bottom: 50px;
+    color: var(--text-color);
+    max-width: 80%;
+    transform: skewX(-5deg); /* Subtle skew for hero paragraph */
+    letter-spacing: 1.5px;
+}
+
+.hero-btn {
+    /* Inherits .btn styles */
+    transition-delay: 0.4s; /* Staggered animation */
+}
+
+.btn {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 20px 40px;
+    border-radius: 0;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+    font-family: var(--font-family-heading);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.8);
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%); /* Angular button shape */
+    transform: skewX(-10deg); /* Skew button */
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-5px) scale(1.05) skewX(-10deg); /* More pronounced hover with skew */
+    box-shadow: 0 0 30px rgba(0, 123, 255, 1);
+}
+
+/* Project Grid */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 50px;
+}
+
+.project-item {
+    background-color: #202020;
+    padding: 40px;
+    border-radius: 0;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 2px solid transparent;
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 95% 100%, 0 100%); /* Angular item shape */
+    position: relative;
+    overflow: hidden;
+}
+
+.project-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.05), transparent);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.project-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    border-color: var(--secondary-color);
+}
+
+.project-item h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    font-size: 2.2em;
+    margin-bottom: 15px;
+    transform: skewX(-5deg); /* Subtle skew for project titles */
+}
+
+.project-item p {
+    color: var(--text-color);
+}
+
+/* Contact Form */
+#contact form {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#contact form input, #contact form textarea {
+    background-color: #202020;
+    border: 1px solid #444;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 0;
+    color: var(--primary-color);
+    font-size: 1.2em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%); /* Angular input shape */
+}
+
+#contact form input:focus, #contact form textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.4);
+}
+
+#contact form .btn {
+    align-self: flex-start;
+    border: none;
+    cursor: pointer;
+}
