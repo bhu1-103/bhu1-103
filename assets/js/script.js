@@ -3,13 +3,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('#sidebar-nav ul li a');
     const sections = document.querySelectorAll('main section');
-    const heroBtn = document.querySelector('#hero .btn');
+    const homeBtn = document.querySelector('#home .btn');
     const hudTitle = document.getElementById('hud-title');
     const hudPageIndicator = document.getElementById('hud-page-indicator');
 
     // Define the order of sections for the page indicator
     const sectionOrder = [
-        { id: 'hero', title: 'HOME' },
+        { id: 'home', title: 'HOME' },
         { id: 'about', title: 'ABOUT ME' },
         { id: 'projects', title: 'PROJECTS' },
         { id: 'contact', title: 'CONTACT' }
@@ -85,14 +85,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Handle hero button click
-    if (heroBtn) {
-        heroBtn.addEventListener('click', (e) => {
+    // Handle home button click
+    if (homeBtn) {
+        homeBtn.addEventListener('click', (e) => {
             e.preventDefault();
             showSection('projects'); // Navigate to projects section
         });
     }
 
-    // Show the hero section by default on load
-    showSection('hero');
+    // Show the home section by default on load
+    showSection('home');
 });

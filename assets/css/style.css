@@ -355,10 +355,10 @@ section.active .stagger-in {
 }
 
 
-/* Hero Section Specifics */
-#hero {
-    display: flex; /* Show hero by default */
-    opacity: 1; /* Show hero by default */
+/* Home Section Specifics */
+#home {
+    display: flex; /* Show home by default */
+    opacity: 1; /* Show home by default */
     flex-direction: column;
     justify-content: center;
     align-items: flex-start; /* Align content to left */
@@ -367,26 +367,26 @@ section.active .stagger-in {
     background: none; /* Remove previous background */
 }
 
-.hero-title {
+.home-title {
     font-size: 5em;
     margin-bottom: 20px;
     text-shadow: 0 0 25px rgba(0, 123, 255, 0.9);
     line-height: 1.1;
-    transform: skewX(-10deg); /* More pronounced skew for hero title */
+    transform: skewX(-10deg); /* More pronounced skew for home title */
     font-weight: 800; /* Make it bold */
     letter-spacing: 3px;
 }
 
-.hero-subtitle {
+.home-subtitle {
     font-size: 2em;
     margin-bottom: 50px;
     color: var(--text-color);
     max-width: 80%;
-    transform: skewX(-5deg); /* Subtle skew for hero paragraph */
+    transform: skewX(-5deg); /* Subtle skew for home paragraph */
     letter-spacing: 1.5px;
 }
 
-.hero-btn {
+.home-btn {
     /* Inherits .btn styles */
     transition-delay: 0.4s; /* Staggered animation */
 }
