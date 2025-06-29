@@ -415,7 +415,7 @@ section.active .stagger-in {
 /* Project Grid */
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
     gap: 50px;
 }
 
@@ -430,6 +430,14 @@ section.active .stagger-in {
     position: relative;
     overflow: hidden;
     cursor: pointer; /* Indicate clickable */
+    min-height: 300px; /* Adjusted for 16:9 aspect ratio */
+    background-image: url('../images/placeholder.jpg'); /* Placeholder image */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Align content to bottom */
+    background-size: cover; /* Cover the entire area */
+    background-position: center; /* Center the background image/video */
+    background-repeat: no-repeat;
 }
 
 .project-item::before {
@@ -439,9 +447,21 @@ section.active .stagger-in {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(0, 123, 255, 0.05), transparent);
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.05), transparent); /* Existing overlay */
     pointer-events: none;
     z-index: 0;
+}
+
+/* Dark overlay for text readability */
+.project-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%);
+    z-index: 1;
 }
 
 .project-item:hover {
@@ -450,8 +470,14 @@ section.active .stagger-in {
     border-color: var(--secondary-color);
 }
 
-.project-item h3 {
+.project-item h3,
+.project-item p {
+    position: relative;
+    z-index: 2; /* Ensure text is above the overlay */
     color: var(--primary-color);
+}
+
+.project-item h3 {
     margin-top: 0;
     font-size: 2.2em;
     margin-bottom: 15px;
