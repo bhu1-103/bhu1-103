@@ -415,8 +415,8 @@ section.active .stagger-in {
 /* Project Grid */
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
-    gap: 50px;
+    grid-template-columns: repeat(1, 1fr); /* One column */
+    gap: 30px; /* Adjusted gap for single column */
 }
 
 .project-item {
@@ -430,51 +430,28 @@ section.active .stagger-in {
     position: relative;
     overflow: hidden;
     cursor: pointer; /* Indicate clickable */
-    min-height: 300px; /* Adjusted for 16:9 aspect ratio */
-    background-image: url('../images/placeholder.jpg'); /* Placeholder image */
+    min-height: 150px; /* Adjusted for text content */
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Align content to bottom */
-    background-size: cover; /* Cover the entire area */
-    background-position: center; /* Center the background image/video */
-    background-repeat: no-repeat;
+    justify-content: flex-start; /* Align content to top */
 }
 
-.project-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(0, 123, 255, 0.05), transparent); /* Existing overlay */
-    pointer-events: none;
-    z-index: 0;
-}
 
-/* Dark overlay for text readability */
-.project-item::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%);
-    z-index: 1;
-}
 
 .project-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    transform: translateY(-10px) rotateZ(1deg) scale(1.02); /* Lift, slight rotation, and subtle scale */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px var(--secondary-color); /* Added glow */
     border-color: var(--secondary-color);
+    background-color: #2a2a2a; /* Slightly lighter background on hover */
 }
+
 
 .project-item h3,
 .project-item p {
     position: relative;
     z-index: 2; /* Ensure text is above the overlay */
     color: var(--primary-color);
+    transition: transform 0.3s ease, color 0.3s ease; /* Add transition for text */
 }
 
 .project-item h3 {
@@ -486,6 +463,16 @@ section.active .stagger-in {
 
 .project-item p {
     color: var(--text-color);
+}
+
+.project-item:hover h3 {
+    transform: skewX(-8deg) translateY(-8px); /* More pronounced lift and skew */
+    color: var(--accent-color); /* Change color on hover */
+}
+
+.project-item:hover p {
+    transform: translateY(-8px); /* More pronounced lift */
+    color: var(--primary-color); /* Keep primary color or change as desired */
 }
 
 /* Project Overlay Styles */
