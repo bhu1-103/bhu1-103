@@ -570,3 +570,294 @@ section.active .stagger-in {
     border: none;
     cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  body {
+    font-size: 12px; /* Base font size for better readability */
+  }
+
+  /* Header adjustments */
+  header {
+    height: 60px;
+    padding: 0 20px;
+    clip-path: none; /* Remove angular shape for simplicity on mobile */
+  }
+
+  .logo {
+    font-size: 2em;
+    letter-spacing: 3px;
+    transform: none; /* Remove skew for logo */
+  }
+
+  /* Hide sidebar on mobile */
+  #sidebar-nav {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Start off-screen */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.98); /* Darker overlay */
+    z-index: 1001; /* Above header */
+    padding-top: 80px; /* Space for header */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.3s ease-in-out;
+    clip-path: none; /* Remove angular shape */
+  }
+
+  #sidebar-nav.active {
+    left: 0; /* Slide in */
+  }
+
+  #sidebar-nav ul {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #sidebar-nav ul li {
+    margin-bottom: 20px;
+  }
+
+  #sidebar-nav ul li a {
+    font-size: 2em;
+    padding: 20px;
+    clip-path: none; /* Remove angular shape */
+    margin-right: 0;
+  }
+
+  /* Add a hamburger icon */
+  .menu-toggle {
+    display: block; /* Show hamburger icon */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1002; /* Above sidebar */
+    font-size: 2em;
+    color: var(--primary-color);
+    cursor: pointer;
+  }
+
+  /* HUD Status Bar adjustments */
+  #hud-status {
+    top: 60px; /* Below header */
+    left: 0;
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    font-size: 1.2em;
+    clip-path: none; /* Remove angular shape */
+  }
+
+  /* Main content adjustments */
+  main {
+    margin-left: 0;
+    padding-top: 120px; /* Offset for header + HUD */
+    width: 100%;
+  }
+
+  section {
+    top: 120px; /* Below header + HUD */
+    height: calc(100% - 120px);
+    padding: 20px;
+    transform: none; /* Remove initial slide-in transform */
+    transition: opacity 0.5s ease; /* Simpler transition */
+  }
+
+  section.active {
+    transform: none;
+  }
+
+  section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    border-left: 5px solid var(--accent-color);
+    transform: none; /* Remove skew for titles */
+  }
+
+  section h2::after {
+    width: 70px;
+    height: 3px;
+    bottom: -10px;
+    left: 10px;
+  }
+
+  /* Home Section Specifics */
+  .home-title {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    transform: none; /* Remove skew */
+  }
+
+  .home-subtitle {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    max-width: 100%;
+    transform: none; /* Remove skew */
+  }
+
+  .btn {
+    padding: 15px 30px;
+    font-size: 0.9em;
+    transform: none; /* Remove skew */
+    clip-path: none; /* Remove angular shape */
+  }
+
+  .btn:hover {
+    transform: translateY(-3px) scale(1.02); /* Simpler hover effect */
+  }
+
+  /* Project Grid */
+  .project-grid {
+    grid-template-columns: 1fr; /* Single column for projects */
+    gap: 20px;
+  }
+
+  .project-item {
+    padding: 20px;
+    clip-path: none; /* Remove angular shape */
+    min-height: auto; /* Allow height to adjust to content */
+  }
+
+  .project-item:hover {
+    transform: translateY(-5px) scale(1.01); /* Simpler hover effect */
+  }
+
+  .project-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    transform: none; /* Remove skew */
+  }
+
+  .project-item:hover h3 {
+    transform: none;
+  }
+
+  .project-item p {
+    font-size: 0.9em;
+  }
+
+  .project-item:hover p {
+    transform: none;
+  }
+
+  /* Project Overlay */
+  .project-overlay-content {
+    padding: 30px;
+    width: 95%;
+    clip-path: none; /* Remove angular shape */
+  }
+
+  .project-overlay-content h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    border-left: 5px solid var(--accent-color);
+    transform: none;
+  }
+
+  .project-overlay-content p {
+    font-size: 1em;
+    margin-bottom: 20px;
+  }
+
+  .close-button {
+    top: 10px;
+    right: 15px;
+    font-size: 2em;
+  }
+
+  /* Contact Form */
+  #contact form input, #contact form textarea {
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 1em;
+    clip-path: none; /* Remove angular shape */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further adjustments for very small screens */
+  body {
+    font-size: 10px;
+  }
+
+  header {
+    height: 50px;
+    padding: 0 15px;
+  }
+
+  .logo {
+    font-size: 1.8em;
+  }
+
+  #hud-status {
+    top: 50px;
+    height: 40px;
+    padding: 0 15px;
+    font-size: 1em;
+  }
+
+  main {
+    padding-top: 90px; /* Offset for smaller header + HUD */
+  }
+
+  section {
+    top: 90px;
+    height: calc(100% - 90px);
+    padding: 15px;
+  }
+
+  section h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+  }
+
+  .home-title {
+    font-size: 2.8em;
+  }
+
+  .home-subtitle {
+    font-size: 1em;
+  }
+
+  .btn {
+    padding: 12px 25px;
+    font-size: 0.8em;
+  }
+
+  .project-item {
+    padding: 15px;
+  }
+
+  .project-item h3 {
+    font-size: 1.3em;
+  }
+
+  .project-item p {
+    font-size: 0.8em;
+  }
+
+  .project-overlay-content {
+    padding: 20px;
+  }
+
+  .project-overlay-content h2 {
+    font-size: 1.8em;
+  }
+
+  .project-overlay-content p {
+    font-size: 0.9em;
+  }
+
+  .close-button {
+    font-size: 1.8em;
+  }
+
+  #contact form input, #contact form textarea {
+    padding: 12px;
+    margin-bottom: 15px;
+  }
+}

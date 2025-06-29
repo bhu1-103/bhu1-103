@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const homeBtn = document.querySelector('#home .btn');
     const hudTitle = document.getElementById('hud-title');
     const hudPageIndicator = document.getElementById('hud-page-indicator');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebarNav = document.getElementById('sidebar-nav');
 
     // Define the order of sections for the page indicator
     const sectionOrder = [
@@ -82,8 +84,19 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault(); // Prevent default anchor behavior
             const targetId = link.getAttribute('href').substring(1); // Get section ID from href
             showSection(targetId);
+            // Close sidebar after clicking a link on mobile
+            if (sidebarNav.classList.contains('active')) {
+                sidebarNav.classList.remove('active');
+            }
         });
     });
+
+    // Toggle sidebar on menu icon click
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            sidebarNav.classList.toggle('active');
+        });
+    }
 
     // Handle home button click
     if (homeBtn) {
