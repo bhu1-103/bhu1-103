@@ -206,15 +206,18 @@ header {
     opacity: 0.5;
 }
 
-#sidebar-nav ul li a:hover::before {
+#sidebar-nav ul li a:hover::before,
+#sidebar-nav ul li a:focus::before {
     transform: translateX(0) skewX(-30deg); /* Slide in */
 }
 
-#sidebar-nav ul li a:hover::after {
+#sidebar-nav ul li a:hover::after,
+#sidebar-nav ul li a:focus::after {
     transform: translateX(0) skewX(-30deg); /* Slide in with delay */
 }
 
-#sidebar-nav ul li a:hover {
+#sidebar-nav ul li a:hover,
+#sidebar-nav ul li a:focus {
     color: var(--background-color); /* Text color changes to background color */
     transform: translateX(10px) scale(1.05); /* Slide right and enlarge text */
     text-shadow: 0 0 10px var(--primary-color); /* Subtle glow on text */
@@ -412,7 +415,7 @@ section.active .stagger-in {
     box-shadow: 0 0 30px rgba(0, 123, 255, 1);
 }
 
-/* Project Grid */
+
 .project-grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr); /* One column */
@@ -438,7 +441,8 @@ section.active .stagger-in {
 
 
 
-.project-item:hover {
+.project-item:hover,
+.project-item:focus {
     transform: translateY(-10px) rotateZ(1deg) scale(1.02); /* Lift, slight rotation, and subtle scale */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px var(--secondary-color); /* Added glow */
     border-color: var(--secondary-color);
@@ -465,7 +469,8 @@ section.active .stagger-in {
     color: var(--text-color);
 }
 
-.project-item:hover h3 {
+.project-item:hover h3,
+.project-item:focus h3 {
     transform: skewX(-8deg) translateY(-8px); /* More pronounced lift and skew */
     color: var(--accent-color); /* Change color on hover */
 }
@@ -539,7 +544,7 @@ section.active .stagger-in {
     color: var(--accent-color);
 }
 
-/* Contact Form */
+
 #contact form {
     display: flex;
     flex-direction: column;
@@ -709,7 +714,7 @@ section.active .stagger-in {
     transform: translateY(-3px) scale(1.02); /* Simpler hover effect */
   }
 
-  /* Project Grid */
+  
   .project-grid {
     grid-template-columns: 1fr; /* Single column for projects */
     gap: 20px;
@@ -747,7 +752,7 @@ section.active .stagger-in {
   .project-overlay-content {
     padding: 30px;
     width: 95%;
-    clip-path: none; /* Remove angular shape */
+    clip-path: none;
   }
 
   .project-overlay-content h2 {
@@ -769,17 +774,17 @@ section.active .stagger-in {
     font-size: 2em;
   }
 
-  /* Contact Form */
+  
   #contact form input, #contact form textarea {
     padding: 15px;
     margin-bottom: 20px;
     font-size: 1em;
-    clip-path: none; /* Remove angular shape */
+    clip-path: none;
   }
 }
 
 @media (max-width: 480px) {
-  /* Further adjustments for very small screens */
+  
   body {
     font-size: 10px;
   }

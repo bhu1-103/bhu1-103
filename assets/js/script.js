@@ -1,4 +1,4 @@
-// JavaScript for interactive elements and SPA-like navigation
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('#sidebar-nav ul li a');
@@ -89,6 +89,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 sidebarNav.classList.remove('active');
             }
         });
+
+        link.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                showSection(targetId);
+                if (sidebarNav.classList.contains('active')) {
+                    sidebarNav.classList.remove('active');
+                }
+            } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                const currentIndex = Array.from(navLinks).indexOf(link);
+                let nextIndex = currentIndex;
+
+                if (e.key === 'ArrowDown') {
+                    nextIndex = (currentIndex + 1) % navLinks.length;
+                } else if (e.key === 'ArrowUp') {
+                    nextIndex = (currentIndex - 1 + navLinks.length) % navLinks.length;
+                }
+                navLinks[nextIndex].focus();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (sidebarNav.classList.contains('active')) {
+                    sidebarNav.classList.remove('active');
+                }
+                const projectsLink = document.querySelector('#sidebar-nav a[href="#projects"]');
+                if (projectsLink && document.querySelector('main section#projects').classList.contains('active')) {
+                    const firstProjectItem = document.querySelector('.project-item');
+                    if (firstProjectItem) {
+                        firstProjectItem.focus();
+                    }
+                }
+            }
+        });
     });
 
     // Toggle sidebar on menu icon click
@@ -160,6 +194,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 overlayTitle.textContent = project.title;
                 overlayDescription.textContent = project.description;
                 projectOverlay.classList.add('active');
+                projectOverlay.focus(); // Focus the overlay when it opens
+            }
+        });
+
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                item.click(); // Simulate click to open overlay
+            } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                const currentItemIndex = Array.from(projectItems).indexOf(item);
+                let nextItemIndex = currentItemIndex;
+
+                if (e.key === 'ArrowDown') {
+                    nextItemIndex = (currentItemIndex + 1) % projectItems.length;
+                } else if (e.key === 'ArrowUp') {
+                    nextItemIndex = (currentItemIndex - 1 + projectItems.length) % projectItems.length;
+                }
+                projectItems[nextItemIndex].focus();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                // Move focus back to the last active navigation link or first if none
+                const activeNavLink = document.querySelector('#sidebar-nav ul li a.active-nav');
+                if (activeNavLink) {
+                    activeNavLink.focus();
+                } else {
+                    navLinks[0].focus();
+                }
             }
         });
     });
@@ -168,6 +230,21 @@ document.addEventListener('DOMContentLoaded', () => {
         projectOverlay.classList.remove('active');
     });
 
+    // Close overlay with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && projectOverlay.classList.contains('active')) {
+            projectOverlay.classList.remove('active');
+            // Return focus to the project item that opened the overlay
+            const focusedProjectItem = document.querySelector('.project-item:focus');
+            if (focusedProjectItem) {
+                focusedProjectItem.focus();
+            }
+        }
+    });
+
     // Show the home section by default on load
     showSection('home');
+
+    // Set initial focus to the first navigation link
+    navLinks[0].focus();
 });
