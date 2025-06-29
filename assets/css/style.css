@@ -40,7 +40,7 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%; /* Full viewport height */
-    overflow: hidden; /* NO SCROLLBARS */
+    overflow-y: auto; /* Allow vertical scrolling */
 }
 
 body {
@@ -286,7 +286,7 @@ section {
     padding: 40px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    overflow: hidden; /* Hide content overflow within section */
+    overflow-y: auto; /* Allow vertical scrolling within section */
     display: none; /* Hidden by default */
     opacity: 0; /* For fade transition */
     transform: translateX(100%) skewX(10deg); /* Initial state for slide-in */
@@ -429,6 +429,7 @@ section.active .stagger-in {
     clip-path: polygon(0 0, 100% 0, 100% 95%, 95% 100%, 0 100%); /* Angular item shape */
     position: relative;
     overflow: hidden;
+    cursor: pointer; /* Indicate clickable */
 }
 
 .project-item::before {
@@ -459,6 +460,70 @@ section.active .stagger-in {
 
 .project-item p {
     color: var(--text-color);
+}
+
+/* Project Overlay Styles */
+.project-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); /* Dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center vertically */
+    z-index: 10000; /* On top of everything */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.project-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.project-overlay-content {
+    background-color: var(--panel-background);
+    padding: 50px;
+    border-radius: 0;
+    box-shadow: 0 0 30px rgba(0, 123, 255, 0.8);
+    max-width: 800px;
+    width: 90%;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%); /* Angular shape */
+    border: 2px solid var(--secondary-color);
+}
+
+.project-overlay-content h2 {
+    font-size: 3em;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    border-left: 8px solid var(--accent-color);
+    padding-left: 20px;
+    transform: skewX(-5deg);
+}
+
+.project-overlay-content p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 30px;
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: var(--primary-color);
+    font-size: 3em;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: var(--accent-color);
 }
 
 /* Contact Form */

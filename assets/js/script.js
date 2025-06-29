@@ -93,6 +93,68 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Project Overlay Logic
+    const projectItems = document.querySelectorAll('.project-item');
+    const projectOverlay = document.getElementById('project-overlay');
+    const overlayTitle = document.getElementById('overlay-title');
+    const overlayDescription = document.getElementById('overlay-description');
+    const closeButton = document.querySelector('.close-button');
+
+    const projectDetails = {
+        'automated-game-player': {
+            title: 'Automated Game Player',
+            description: 'Designed a servo-controlled gaming system with Raspberry Pi that uses live camera feedback for real-time navigation and converts visual data into automated keyboard inputs.'
+        },
+        'shadow-casting': {
+            title: 'Shadow Casting Simulator',
+            description: 'Developed a real-time shadow casting simulator using Pygame and Shapely for geometric calculations, incorporating dynamic player control with mouse input for interactive environments.'
+        },
+        'ascii-art-converter': {
+            title: 'ASCII Art Video Converter',
+            description: 'Created a tool that converts video frames into ASCII art using ffmpeg and Python. The project automates the conversion and playback of videos as ASCII art in real-time, combining multimedia processing with creative visual output.'
+        },
+        'ai-workflow-assistant': {
+            title: 'AI-Powered Workflow Assistant',
+            description: 'Developed a script integrated with my window manager to serve as a personal assistant, automating text summarization, task management, and media streaming. It includes AI-driven content suggestions and key bindings for an efficient, hands-free workflow.'
+        },
+        'riscv-led-matrix-driver': {
+            title: 'Minimalistic Display Driver for RISC-V 16x16 LED Matrix',
+            description: 'Developed a shell script-based interpreter to convert .png images into a format compatible with a 16x16 LED matrix for RISC-V simulators using ImageMagick.'
+        },
+        'rfid-security': {
+            title: 'RFID Security Mechanism',
+            description: 'Developed a dynamic RFID card ID-changing system to prevent cloned cards from being used, with real-time alerts for unauthorized access and detailed access logs for security auditing.'
+        },
+        'image-encryption': {
+            title: 'Image Encryption Tool',
+            description: 'Developed an image encryption tool using OpenCV by embedding pixel coordinates (x, y) and their inverse (width-x, height-y) into the R, G, B values to create a layered encryption system, where each layer must be decrypted in sequence for secure transmission.'
+        },
+        'steganography': {
+            title: 'Steganography Technique',
+            description: 'Implemented a custom steganography technique to covertly embed text within images by encoding 3 bits of data per pixel, using 2 pixels (6 bits) to represent a character. The method minimizes visible color distortion, ensuring discreet data insertion while maintaining image integrity.'
+        },
+        'usb-rubber-ducky': {
+            title: 'USB Rubber Ducky using Raspberry Pi',
+            description: 'Configured Raspberry Pi Zero 2 W in USB gadget mode to spoof an Apple Magic Keyboard, undetected by the host. Developed a custom scripting language for rapid, precise input, enabling automation and advanced scripting capabilities.'
+        }
+    };
+
+    projectItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const projectId = item.dataset.projectId;
+            const project = projectDetails[projectId];
+            if (project) {
+                overlayTitle.textContent = project.title;
+                overlayDescription.textContent = project.description;
+                projectOverlay.classList.add('active');
+            }
+        });
+    });
+
+    closeButton.addEventListener('click', () => {
+        projectOverlay.classList.remove('active');
+    });
+
     // Show the home section by default on load
     showSection('home');
 });
