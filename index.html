@@ -17,7 +17,7 @@
             <li><a href="#home" tabindex="0">HOME</a></li>
             <li><a href="#about" tabindex="0">ABOUT</a></li>
             <li><a href="#projects" tabindex="0">PROJECTS</a></li>
-            <li><a href="#blogs" tabindex="0">BLOGS</a></li>
+            <li><a href="#resume" tabindex="0">RESUME</a></li>
             <li><a href="#contact" tabindex="0">CONTACT</a></li>
         </ul>
     </aside>
@@ -39,10 +39,19 @@
         <section id="about">
             <div class="section-content">
                 <h2 class="stagger-in">ABOUT ME</h2>
-                <p class="stagger-in">Here's my resume</p>
-                <div class="resume-container stagger-in">
-                    <iframe src="assets/bhu1_resume.pdf" width="100%" height="600px" style="border: none;"></iframe>
-                </div>
+                <p class="stagger-in">I build systems that do things — not just look good. Whether it’s a shell script that reacts to ambient light or a C library that draws synthwave animations on a PS Vita, I focus on making machines respond, automate, and visualize in real time.</p>
+                <p class="stagger-in">My background isn’t formalized through degrees or certs — it’s through obsessive building, porting, and tearing down systems. I’ve written assistants that convert PDFs to human-like voiceovers, tools that convert videos to ASCII art, and scripts that sync wireless sensors with OpenGL renderers.</p>
+                <p class="stagger-in">I maintain a personal toolkit called <a href="https://github.com/bhu1-103/swiss-army-katana">swiss-army-katana</a> — a constantly evolving repository filled with shell utilities, rendering libraries, desktop automations, cross-compilation projects, and experiments that don't belong anywhere else. This includes things like:</p>
+                <ul class="stagger-in">
+                    <li><strong>Real-time Visualizers:</strong> <a href="https://github.com/bhu1-103/swiss-army-katana/blob/main/opengl/synthwave.h">synthwave.h</a> (OpenGL vaporwave renderer), <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/opengl/fps-template">fps-template</a>, and 3D demos using <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/opengl/raycasting">ray casting</a> and <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/opengl/shadow-casting">shadow engines</a>.</li>
+                    <li><strong>Productivity Tools:</strong> <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/smaller-tools/timer">workspace-aware timers</a>, <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/smaller-tools/np">np</a> for project bootstrapping, <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/smaller-tools/qr-audio">QR-based audio transfer scripts</a>, <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/assistant/pdf2audiobook">PDF-to-audiobook pipelines</a>.</li>
+                    <li><strong>System Tools:</strong> <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/smaller-tools/autorotate">autorotation</a>, <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/smaller-tools/auto-brightness">auto-brightness</a>, <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/smaller-tools/jack">jack detection</a>, <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/assistant">voice-command interfaces</a>, and reactive scripts for daily use.</li>
+                    <li><strong>Hardware/Platform Experiments:</strong> from <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/smaller-tools/wii">Wiimote-controlled mouse inputs</a> to <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/pico">Raspberry Pi keyboard spoofers</a>.</li>
+                    <li><strong>Cross-compilation Work:</strong> Building projects for <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/lib">ARM</a>, <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/psp">PS Vita</a>, <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/libnds">Nintendo DSi</a>, using x86 dev environments.</li>
+                </ul>
+                <p class="stagger-in">I like working close to the hardware. I write mostly in C and shell because they give me the control I need. Lua when I want lightweight scripting, and Python if a library demands it.</p>
+                <p class="stagger-in">I spend a lot of time listening to music while tinkering with systems — late nights, rain outside, and code on the screen. I'm not driven by trends or frameworks. I care about efficiency, automation, and building things that make systems work better with less.</p>
+                <p class="stagger-in">If I can make something lighter, faster, or able to run on underpowered hardware, I’ll try it.</p>
             </div>
         </section>
 
@@ -50,42 +59,55 @@
             <div class="section-content">
                 <h2 class="stagger-in">PROJECTS</h2>
                 <div class="project-grid stagger-in">
+                    <div class="project-item stagger-in" data-project-id="cappy" tabindex="0">
+                        <h3>Cappy: Wireless Network Simulator</h3>
+                        <p>A 3D Wi-Fi network simulator powered by Komondor, shell scripts, and ML. Integrates OpenGL visualizations, custom map generation, throughput prediction, and real-time interactive exploration.</p>
+                    </div>
+                    <div class="project-item stagger-in" data-project-id="synthwave-h" tabindex="0">
+                        <h3>synthwave.h</h3>
+                        <p>Custom OpenGL header-only library for generating vaporwave-style visuals — grids, pyramids, suns — used in data visualization and personal projects. It has been cross-compiled and ported to platforms like the Nintendo DSi and PS Vita.</p>
+                    </div>
+                    <div class="project-item stagger-in" data-project-id="yt-tui" tabindex="0">
+                        <h3>yt-tui</h3>
+                        <p>A terminal-first YouTube downloader written in zsh. Supports fuzzy searching, batch downloading via text file, conversion to MP3, and syncing to iPod/PS Vita.</p>
+                    </div>
                     <div class="project-item stagger-in" data-project-id="automated-game-player" tabindex="0">
                         <h3>Automated Game Player</h3>
                         <p>Designed a servo-controlled gaming system with Raspberry Pi that uses live camera feedback for real-time navigation and converts visual data into automated keyboard inputs.</p>
-                    </div>
-                    <div class="project-item stagger-in" data-project-id="shadow-casting" tabindex="0">
-                        <h3>Shadow Casting</h3>
-                        <p>Developed a real-time shadow casting simulator using Pygame and Shapely for geometric calculations, incorporating dynamic player control with mouse input for interactive environments.</p>
-                    </div>
-                    <div class="project-item stagger-in" data-project-id="ascii-art-converter" tabindex="0">
-                        <h3>ASCII Art Converter</h3>
-                        <p>Created a tool that converts video frames into ASCII art using ffmpeg and Python. The project automates the conversion and playback of videos as ASCII art in real-time, combining multimedia processing with creative visual output.</p>
-                    </div>
-                    <div class="project-item stagger-in" data-project-id="ai-workflow-assistant" tabindex="0">
-                        <h3>AI Workflow Assistant</h3>
-                        <p>Developed a script integrated with my window manager to serve as a personal assistant, automating text summarization, task management, and media streaming. It includes AI-driven content suggestions and key bindings for an efficient, hands-free workflow.</p>
-                    </div>
-                    <div class="project-item stagger-in" data-project-id="riscv-led-matrix-driver" tabindex="0">
-                        <h3>RISC-V LED Matrix Driver</h3>
-                        <p>Developed a shell script-based interpreter to convert .png images into a format compatible with a 16x16 LED matrix for RISC-V simulators using ImageMagick.</p>
-                    </div>
-                    <div class="project-item stagger-in" data-project-id="rfid-security" tabindex="0">
-                        <h3>RFID Security</h3>
-                        <p>Developed a dynamic RFID card ID-changing system to prevent cloned cards from being used, with real-time alerts for unauthorized access and detailed access logs for security auditing.</p>
-                    </div>
-                    <div class="project-item stagger-in" data-project-id="image-encryption" tabindex="0">
-                        <h3>Image Encryption</h3>
-                        <p>Developed an image encryption tool using OpenCV by embedding pixel coordinates (x, y) and their inverse (width-x, height-y) into the R, G, B values to create a layered encryption system, where each layer must be decrypted in sequence for secure transmission.</p>
-                    </div>
-                    <div class="project-item stagger-in" data-project-id="steganography" tabindex="0">
-                        <h3>Steganography</h3>
-                        <p>Implemented a custom steganography technique to covertly embed text within images by encoding 3 bits of data per pixel, using 2 pixels (6 bits) to represent a character. The method minimizes visible color distortion, ensuring discreet data insertion while maintaining image integrity.</p>
                     </div>
                     <div class="project-item stagger-in" data-project-id="usb-rubber-ducky" tabindex="0">
                         <h3>USB Rubber Ducky</h3>
                         <p>Configured Raspberry Pi Zero 2 W in USB gadget mode to spoof an Apple Magic Keyboard, undetected by the host. Developed a custom scripting language for rapid, precise input, enabling automation and advanced scripting capabilities.</p>
                     </div>
+                    <div class="project-item stagger-in" data-project-id="ai-workflow-assistant" tabindex="0">
+                        <h3>AI Workflow Assistant</h3>
+                        <p>Developed a script integrated with my window manager to serve as a personal assistant, automating text summarization, task management, and media streaming. It includes AI-driven content suggestions and key bindings for an efficient, hands-free workflow.</p>
+                    </div>
+                    <div class="project-item stagger-in" data-project-id="rfid-security" tabindex="0">
+                        <h3>RFID Security</h3>
+                        <p>Developed a dynamic RFID card ID-changing system to prevent cloned cards from being used, with real-time alerts for unauthorized access and detailed access logs for security auditing.</p>
+                    </div>
+                    <div class="project-item stagger-in" data-project-id="terminal-video-player" tabindex="0">
+                        <h3>Terminal Video Player</h3>
+                        <p>Built a video-to-ASCII player using ffmpeg and shell scripting to convert video frames to ASCII and stream them in real-time inside the terminal.</p>
+                    </div>
+                    <div class="project-item stagger-in" data-project-id="gif-clock" tabindex="0">
+                        <h3>GIF Clock</h3>
+                        <p>A simple SDL2-based clock that displays time using animated GIF digits. Built in C, it has been cross-compiled for ARM to run on platforms like the Raspberry Pi, with support for custom themes and real-time rendering.</p>
+                    </div>
+                    <div class="project-item stagger-in" data-project-id="wii-homebrew" tabindex="0">
+                        <h3>Wii Homebrew & Motion Control</h3>
+                        <p>Explored Wii homebrew, connecting Wiimotes via bluetoothctl and using kernel modules to emulate mouse control with accelerometer data. Repo includes setup scripts, motion control experiments, and WBFS automation for RVZ/ISO to SD deployment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resume">
+            <div class="section-content">
+                <h2 class="stagger-in">RESUME</h2>
+                <div class="resume-container stagger-in">
+                    <iframe src="assets/bhu1_resume.pdf" width="100%" height="600px" style="border: none;"></iframe>
                 </div>
             </div>
         </section>

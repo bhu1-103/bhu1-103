@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'home', title: 'HOME' },
         { id: 'about', title: 'ABOUT ME' },
         { id: 'projects', title: 'PROJECTS' },
+        { id: 'resume', title: 'RESUME' },
         { id: 'contact', title: 'CONTACT' }
     ];
 
@@ -148,47 +149,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeButton = document.querySelector('.close-button');
 
     const projectDetails = {
+        'cappy': {
+            title: 'Cappy: Wireless Network Simulator',
+            description: 'A 3D Wi-Fi network simulator powered by Komondor, shell scripts, and ML. Integrates OpenGL visualizations, custom map generation, throughput prediction, and real-time interactive exploration.'
+        },
+        'synthwave-h': {
+            title: 'synthwave.h',
+            description: 'Custom OpenGL header-only library for generating vaporwave-style visuals — grids, pyramids, suns — used in data visualization and personal projects. It has been cross-compiled and ported to platforms like the Nintendo DSi and PS Vita.'
+        },
+        'yt-tui': {
+            title: 'yt-tui',
+            description: 'A terminal-first YouTube downloader written in zsh. Supports fuzzy searching, batch downloading via text file, conversion to MP3, and syncing to iPod/PS Vita.'
+        },
         'automated-game-player': {
             title: 'Automated Game Player',
             description: 'Designed a servo-controlled gaming system with Raspberry Pi that uses live camera feedback for real-time navigation and converts visual data into automated keyboard inputs.'
         },
-        'shadow-casting': {
-            title: 'Shadow Casting Simulator',
-            description: 'Developed a real-time shadow casting simulator using Pygame and Shapely for geometric calculations, incorporating dynamic player control with mouse input for interactive environments.'
-        },
-        'ascii-art-converter': {
-            title: 'ASCII Art Video Converter',
-            description: 'Created a tool that converts video frames into ASCII art using ffmpeg and Python. The project automates the conversion and playback of videos as ASCII art in real-time, combining multimedia processing with creative visual output.'
+        'usb-rubber-ducky': {
+            title: 'USB Rubber Ducky',
+            description: 'Configured Raspberry Pi Zero 2 W in USB gadget mode to spoof an Apple Magic Keyboard, undetected by the host. Developed a custom scripting language for rapid, precise input, enabling automation and advanced scripting capabilities.'
         },
         'ai-workflow-assistant': {
-            title: 'AI-Powered Workflow Assistant',
+            title: 'AI Workflow Assistant',
             description: 'Developed a script integrated with my window manager to serve as a personal assistant, automating text summarization, task management, and media streaming. It includes AI-driven content suggestions and key bindings for an efficient, hands-free workflow.'
         },
-        'riscv-led-matrix-driver': {
-            title: 'Minimalistic Display Driver for RISC-V 16x16 LED Matrix',
-            description: 'Developed a shell script-based interpreter to convert .png images into a format compatible with a 16x16 LED matrix for RISC-V simulators using ImageMagick.'
-        },
         'rfid-security': {
-            title: 'RFID Security Mechanism',
+            title: 'RFID Security',
             description: 'Developed a dynamic RFID card ID-changing system to prevent cloned cards from being used, with real-time alerts for unauthorized access and detailed access logs for security auditing.'
         },
-        'image-encryption': {
-            title: 'Image Encryption Tool',
-            description: 'Developed an image encryption tool using OpenCV by embedding pixel coordinates (x, y) and their inverse (width-x, height-y) into the R, G, B values to create a layered encryption system, where each layer must be decrypted in sequence for secure transmission.'
+        'terminal-video-player': {
+            title: 'Terminal Video Player',
+            description: 'Built a video-to-ASCII player using ffmpeg and shell scripting to convert video frames to ASCII and stream them in real-time inside the terminal.'
         },
-        'steganography': {
-            title: 'Steganography Technique',
-            description: 'Implemented a custom steganography technique to covertly embed text within images by encoding 3 bits of data per pixel, using 2 pixels (6 bits) to represent a character. The method minimizes visible color distortion, ensuring discreet data insertion while maintaining image integrity.'
+        'gif-clock': {
+            title: 'GIF Clock',
+            description: 'A simple SDL2-based clock that displays time using animated GIF digits. Built in C, it has been cross-compiled for ARM to run on platforms like the Raspberry Pi, with support for custom themes and real-time rendering.'
         },
-        'usb-rubber-ducky': {
-            title: 'USB Rubber Ducky using Raspberry Pi',
-            description: 'Configured Raspberry Pi Zero 2 W in USB gadget mode to spoof an Apple Magic Keyboard, undetected by the host. Developed a custom scripting language for rapid, precise input, enabling automation and advanced scripting capabilities.'
+        'wii-homebrew': {
+            title: 'Wii Homebrew & Motion Control',
+            description: 'Explored Wii homebrew, connecting Wiimotes via bluetoothctl and using kernel modules to emulate mouse control with accelerometer data. Repo includes setup scripts, motion control experiments, and WBFS automation for RVZ/ISO to SD deployment.'
         }
     };
 
     projectItems.forEach(item => {
+        const projectId = item.dataset.projectId;
+        item.style.backgroundImage = `url(assets/images/${projectId}.jpg)`;
+
         item.addEventListener('click', () => {
-            const projectId = item.dataset.projectId;
             const project = projectDetails[projectId];
             if (project) {
                 overlayTitle.textContent = project.title;

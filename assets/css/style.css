@@ -43,6 +43,10 @@ html, body {
     overflow-y: auto; /* Allow vertical scrolling */
 }
 
+html {
+    font-size: 14px; /* Base font size for overall scaling */
+}
+
 body {
     font-family: var(--font-family-body);
     background-color: var(--background-color);
@@ -82,7 +86,7 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8HCTAAAAAXNSR0IArs4c6QAAAB9JREFUGFdjYGBgYGBgYGBgYGBgYGBgYGBgYGBgAAAB9gB+G1j51AAAAABJRU5ErkJggg==') repeat;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANgAAAAECAYAAACp8HCTAAAAAXNSR0IArs4c6QAAAB9JREFUGFdjYGBgYGBgYGBgYGBgYGBgYGBgYGBgAAAB9gB+G1j51AAAAABJRU5ErkJggg==') repeat;
     pointer-events: none;
     z-index: -1; /* Behind everything */
     opacity: 0.05; /* More subtle */
@@ -96,7 +100,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-    color: var(--primary-color);
+    color: var(--accent-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -123,7 +127,7 @@ header {
 
 .logo {
     font-family: var(--font-family-display);
-    font-size: 2.8em;
+    font-size: 3.2em; /* Adjusted to maintain visual size */
     color: var(--primary-color);
     letter-spacing: 5px;
     text-shadow: 0 0 15px rgba(0, 123, 255, 0.7);
@@ -160,7 +164,7 @@ header {
 
 #sidebar-nav ul li a {
     display: block;
-    font-size: 1.5em;
+    font-size: 1.2em; /* Made font smaller */
     padding: 15px 30px;
     position: relative;
     font-family: var(--font-family-heading);
@@ -254,7 +258,7 @@ header {
     align-items: center;
     padding: 0 40px;
     font-family: var(--font-family-heading);
-    font-size: 1.8em;
+    font-size: 2.057em; /* Adjusted to maintain visual size */
     color: var(--primary-color);
     letter-spacing: 1px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
@@ -318,7 +322,7 @@ section::before {
 
 section h2 {
     text-align: left; /* P3R titles are often left-aligned within panels */
-    font-size: 3.8em;
+    font-size: 2.5em; /* Made font smaller */
     margin-bottom: 40px;
     position: relative;
     color: var(--secondary-color);
@@ -418,7 +422,7 @@ section.active .stagger-in {
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr); /* One column */
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
     gap: 30px; /* Adjusted gap for single column */
 }
 
@@ -437,9 +441,22 @@ section.active .stagger-in {
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* Align content to top */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: var(--project-bg-image);
 }
 
-
+.project-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
+    z-index: 1;
+}
 
 .project-item:hover,
 .project-item:focus {
@@ -460,7 +477,7 @@ section.active .stagger-in {
 
 .project-item h3 {
     margin-top: 0;
-    font-size: 2.2em;
+    font-size: 1.8em; /* Smaller font size */
     margin-bottom: 15px;
     transform: skewX(-5deg); /* Subtle skew for project titles */
     font-family: var(--font-family-display);
@@ -468,6 +485,7 @@ section.active .stagger-in {
 
 .project-item p {
     color: var(--text-color);
+    font-size: 0.9em; /* Smaller font size */
 }
 
 .project-item:hover h3,
@@ -868,3 +886,6 @@ section.active .stagger-in {
     margin-bottom: 15px;
   }
 }
+
+
+
