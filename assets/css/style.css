@@ -19,17 +19,17 @@
     font-style: normal;
 }
 
-/* Basic Styles */
+
 :root {
-    --primary-color: #FFFFFF; /* White */
-    --secondary-color: #007bff; /* Vibrant Blue, similar to P3R UI */
-    --accent-color: #FFD700; /* Gold/Yellow for subtle accents */
-    --background-color: #101010; /* Darker background */
-    --panel-background: #1a1a1a; /* Slightly lighter for panels */
+    --primary-color: #FFFFFF; 
+    --secondary-color: #007bff; 
+    --accent-color: #FFD700; 
+    --background-color: #101010; 
+    --panel-background: #1a1a1a; 
     --text-color: #e0e0e0;
     --font-family-heading: 'Persona5MenuFont', sans-serif;
     --font-family-body: 'Audiowide', sans-serif;
-    --font-family-display: 'OrbitronBlack', sans-serif; /* For specific impactful text */
+    --font-family-display: 'OrbitronBlack', sans-serif; 
 }
 
 * {
@@ -39,12 +39,12 @@
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%; /* Full viewport height */
-    overflow-y: auto; /* Allow vertical scrolling */
+    height: 100%; 
+    overflow-y: auto; 
 }
 
 html {
-    font-size: 14px; /* Base font size for overall scaling */
+    font-size: 14px; 
 }
 
 body {
@@ -52,10 +52,10 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
-    position: relative; /* For absolute positioning of sections */
+    position: relative; 
 }
 
-/* Animated Grid Background Overlay */
+
 body::before {
     content: '';
     position: fixed;
@@ -69,7 +69,7 @@ body::before {
     background-size: 30px 30px;
     animation: grid-pan 60s linear infinite;
     pointer-events: none;
-    z-index: -1; /* Behind everything */
+    z-index: -1; 
     opacity: 0.3;
 }
 
@@ -78,7 +78,7 @@ body::before {
     to { background-position: -600px -600px; }
 }
 
-/* Subtle Noise Effect */
+
 body::after {
     content: '';
     position: fixed;
@@ -88,14 +88,14 @@ body::after {
     height: 100%;
     background: url('data:image/png;base64,iVBORw0KGgoAAAANgAAAAECAYAAACp8HCTAAAAAXNSR0IArs4c6QAAAB9JREFUGFdjYGBgYGBgYGBgYGBgYGBgYGBgYGBgAAAB9gB+G1j51AAAAABJRU5ErkJggg==') repeat;
     pointer-events: none;
-    z-index: -1; /* Behind everything */
-    opacity: 0.05; /* More subtle */
+    z-index: -1; 
+    opacity: 0.05; 
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-family-heading);
     color: var(--primary-color);
-    text-transform: uppercase; /* P3R style */
+    text-transform: uppercase; 
     letter-spacing: 2px;
 }
 
@@ -109,46 +109,46 @@ a:hover {
     color: var(--secondary-color);
 }
 
-/* Header - Minimal top bar */
+
 header {
-    background-color: rgba(0, 0, 0, 0.98); /* Almost opaque */
+    background-color: rgba(0, 0, 0, 0.98); 
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 80px; /* Fixed height for top bar */
+    height: 80px; 
     z-index: 1000;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
     display: flex;
     align-items: center;
     padding: 0 40px;
-    clip-path: polygon(0 0, 100% 0, 100% 70%, 95% 100%, 0 100%); /* Angular header shape */
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 95% 100%, 0 100%); 
 }
 
 .logo {
     font-family: var(--font-family-display);
-    font-size: 3.2em; /* Adjusted to maintain visual size */
+    font-size: 3.2em; 
     color: var(--primary-color);
     letter-spacing: 5px;
     text-shadow: 0 0 15px rgba(0, 123, 255, 0.7);
-    transform: skewX(-10deg); /* Subtle skew for logo */
+    transform: skewX(-10deg); 
 }
 
-/* Sidebar Navigation */
+
 #sidebar-nav {
     position: fixed;
-    top: 0; /* Start from the top */
+    top: 0; 
     left: 0;
-    width: 250px; /* Width of the sidebar */
+    width: 250px; 
     height: 100%;
     background-color: rgba(0, 0, 0, 0.95);
-    z-index: 990; /* Below header, above main content */
+    z-index: 990; 
     box-shadow: 5px 0 20px rgba(0, 0, 0, 0.8);
-    padding-top: 120px; /* Offset for header and HUD */
+    padding-top: 120px; 
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%); /* Angular sidebar shape */
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%); 
 }
 
 #sidebar-nav ul {
@@ -164,20 +164,20 @@ header {
 
 #sidebar-nav ul li a {
     display: block;
-    font-size: 1.2em; /* Made font smaller */
+    font-size: 1.2em; 
     padding: 15px 30px;
     position: relative;
     font-family: var(--font-family-heading);
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: var(--primary-color); /* Default text color */
+    color: var(--primary-color); 
     transition: color 0.3s ease, transform 0.3s ease;
-    overflow: hidden; /* Hide overflowing pseudo-elements */
-    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%); /* Angular button shape */
-    margin-right: 20px; /* Space for the angular cut */
+    overflow: hidden; 
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%); 
+    margin-right: 20px; 
 }
 
-/* Main selector background */
+
 #sidebar-nav ul li a::before {
     content: '';
     position: absolute;
@@ -186,14 +186,14 @@ header {
     width: 100%;
     height: 100%;
     background-color: var(--secondary-color);
-    transform: translateX(-100%) skewX(-30deg); /* Start off-screen, skewed */
+    transform: translateX(-100%) skewX(-30deg); 
     transform-origin: left;
-    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth, fast transition */
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); 
     z-index: -1;
     opacity: 0.8;
 }
 
-/* Selector trail */
+
 #sidebar-nav ul li a::after {
     content: '';
     position: absolute;
@@ -201,33 +201,33 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--accent-color); /* Gold accent for the trail */
-    transform: translateX(-100%) skewX(-30deg); /* Start off-screen, skewed */
+    background-color: var(--accent-color); 
+    transform: translateX(-100%) skewX(-30deg); 
     transform-origin: left;
-    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); /* Same transition */
-    transition-delay: 0.05s; /* Slightly delayed for trail effect */
-    z-index: -2; /* Behind the main selector */
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); 
+    transition-delay: 0.05s; 
+    z-index: -2; 
     opacity: 0.5;
 }
 
 #sidebar-nav ul li a:hover::before,
 #sidebar-nav ul li a:focus::before {
-    transform: translateX(0) skewX(-30deg); /* Slide in */
+    transform: translateX(0) skewX(-30deg); 
 }
 
 #sidebar-nav ul li a:hover::after,
 #sidebar-nav ul li a:focus::after {
-    transform: translateX(0) skewX(-30deg); /* Slide in with delay */
+    transform: translateX(0) skewX(-30deg); 
 }
 
 #sidebar-nav ul li a:hover,
 #sidebar-nav ul li a:focus {
-    color: var(--background-color); /* Text color changes to background color */
-    transform: translateX(10px) scale(1.05); /* Slide right and enlarge text */
-    text-shadow: 0 0 10px var(--primary-color); /* Subtle glow on text */
+    color: var(--background-color); 
+    transform: translateX(10px) scale(1.05); 
+    text-shadow: 0 0 10px var(--primary-color); 
 }
 
-/* Active navigation item */
+
 #sidebar-nav ul li a.active-nav {
     color: var(--background-color);
     transform: translateX(10px) scale(1.05);
@@ -236,33 +236,33 @@ header {
 
 #sidebar-nav ul li a.active-nav::before {
     transform: translateX(0) skewX(-30deg);
-    opacity: 1; /* Fully opaque for active */
+    opacity: 1; 
 }
 
 #sidebar-nav ul li a.active-nav::after {
     transform: translateX(0) skewX(-30deg);
-    opacity: 0.7; /* More opaque for active trail */
+    opacity: 0.7; 
 }
 
-/* HUD Status Bar */
+
 #hud-status {
     position: fixed;
-    top: 60px; /* Below header */
-    left: 250px; /* Offset by sidebar width */
-    width: calc(100% - 250px); /* Adjust width for sidebar */
-    height: 70px; /* Height of the HUD bar */
-    background-color: rgba(0, 0, 0, 0.9); /* Slightly transparent black */
+    top: 60px; 
+    left: 250px; 
+    width: calc(100% - 250px); 
+    height: 70px; 
+    background-color: rgba(0, 0, 0, 0.9); 
     z-index: 999;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 40px;
     font-family: var(--font-family-heading);
-    font-size: 2.057em; /* Adjusted to maintain visual size */
+    font-size: 2.057em; 
     color: var(--primary-color);
     letter-spacing: 1px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%); /* Angular shape */
+    clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%); 
 }
 
 #hud-title {
@@ -274,38 +274,38 @@ header {
     color: var(--accent-color);
 }
 
-/* Main Content Area - Panels */
+
 main {
     position: relative;
-    width: calc(100% - 250px); /* Adjust width for sidebar */
+    width: calc(100% - 250px); 
     height: 100%;
-    padding-top: 150px; /* Offset for fixed header + HUD */
-    margin-left: 250px; /* Offset for sidebar */
+    padding-top: 150px; 
+    margin-left: 250px; 
 }
 
 section {
     position: absolute;
-    top: 150px; /* Below header + HUD */
+    top: 150px; 
     left: 0;
     width: 100%;
-    height: calc(100% - 150px); /* Fill remaining height */
+    height: calc(100% - 150px); 
     background-color: var(--panel-background);
     padding: 40px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    overflow-y: auto; /* Allow vertical scrolling within section */
-    display: none; /* Hidden by default */
-    opacity: 0; /* For fade transition */
-    transform: translateX(100%) skewX(10deg); /* Initial state for slide-in */
+    overflow-y: auto; 
+    display: none; 
+    opacity: 0; 
+    transform: translateX(100%) skewX(10deg); 
     transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-    z-index: 1; /* Default z-index */
+    z-index: 1; 
 }
 
 section.active {
     display: block;
     opacity: 1;
     transform: translateX(0) skewX(0deg);
-    z-index: 2; /* Active section on top */
+    z-index: 2; 
 }
 
 section::before {
@@ -321,14 +321,14 @@ section::before {
 }
 
 section h2 {
-    text-align: left; /* P3R titles are often left-aligned within panels */
-    font-size: 2.5em; /* Made font smaller */
+    text-align: left; 
+    font-size: 2.5em; 
     margin-bottom: 40px;
     position: relative;
     color: var(--secondary-color);
     padding-left: 20px;
-    border-left: 8px solid var(--accent-color); /* Thicker gold accent line */
-    transform: skewX(-5deg); /* Subtle skew for titles */
+    border-left: 8px solid var(--accent-color); 
+    transform: skewX(-5deg); 
 }
 
 section h2::after {
@@ -339,10 +339,10 @@ section h2::after {
     background-color: var(--primary-color);
     bottom: -15px;
     left: 20px;
-    transform: none; /* Remove center transform */
+    transform: none; 
 }
 
-/* Staged Content Animations */
+
 .section-content > * {
     opacity: 0;
     transform: translateY(20px);
@@ -362,16 +362,16 @@ section.active .stagger-in {
 }
 
 
-/* Home Section Specifics */
+
 #home {
-    display: flex; /* Show home by default */
-    opacity: 1; /* Show home by default */
+    display: flex; 
+    opacity: 1; 
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start; /* Align content to left */
+    align-items: flex-start; 
     text-align: left;
     padding-top: 0;
-    background: none; /* Remove previous background */
+    background: none; 
 }
 
 .home-title {
@@ -379,8 +379,8 @@ section.active .stagger-in {
     margin-bottom: 20px;
     text-shadow: 0 0 25px rgba(0, 123, 255, 0.9);
     line-height: 1.1;
-    transform: skewX(-10deg); /* More pronounced skew for home title */
-    font-weight: 800; /* Make it bold */
+    transform: skewX(-10deg); 
+    font-weight: 800; 
     letter-spacing: 3px;
 }
 
@@ -389,13 +389,13 @@ section.active .stagger-in {
     margin-bottom: 50px;
     color: var(--text-color);
     max-width: 80%;
-    transform: skewX(-5deg); /* Subtle skew for home paragraph */
+    transform: skewX(-5deg); 
     letter-spacing: 1.5px;
 }
 
 .home-btn {
-    /* Inherits .btn styles */
-    transition-delay: 0.4s; /* Staggered animation */
+    
+    transition-delay: 0.4s; 
 }
 
 .btn {
@@ -409,21 +409,21 @@ section.active .stagger-in {
     text-transform: uppercase;
     letter-spacing: 3px;
     box-shadow: 0 0 20px rgba(0, 123, 255, 0.8);
-    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%); /* Angular button shape */
-    transform: skewX(-10deg); /* Skew button */
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%); 
+    transform: skewX(-10deg); 
 }
 
 .btn:hover {
     background-color: #0056b3;
-    transform: translateY(-5px) scale(1.05) skewX(-10deg); /* More pronounced hover with skew */
+    transform: translateY(-5px) scale(1.05) skewX(-10deg); 
     box-shadow: 0 0 30px rgba(0, 123, 255, 1);
 }
 
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
-    gap: 30px; /* Adjusted gap for single column */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 30px; 
 }
 
 .project-item {
@@ -433,14 +433,14 @@ section.active .stagger-in {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     border: 2px solid transparent;
-    clip-path: polygon(0 0, 100% 0, 100% 95%, 95% 100%, 0 100%); /* Angular item shape */
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 95% 100%, 0 100%); 
     position: relative;
     overflow: hidden;
-    cursor: pointer; /* Indicate clickable */
-    min-height: 150px; /* Adjusted for text content */
+    cursor: pointer; 
+    min-height: 150px; 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Align content to top */
+    justify-content: flex-start; 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -454,63 +454,63 @@ section.active .stagger-in {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
+    background-color: rgba(0, 0, 0, 0.6); 
     z-index: 1;
 }
 
 .project-item:hover,
 .project-item:focus {
-    transform: translateY(-10px) rotateZ(1deg) scale(1.02); /* Lift, slight rotation, and subtle scale */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px var(--secondary-color); /* Added glow */
+    transform: translateY(-10px) rotateZ(1deg) scale(1.02); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px var(--secondary-color); 
     border-color: var(--secondary-color);
-    background-color: #2a2a2a; /* Slightly lighter background on hover */
+    background-color: #2a2a2a; 
 }
 
 
 .project-item h3,
 .project-item p {
     position: relative;
-    z-index: 2; /* Ensure text is above the overlay */
+    z-index: 2; 
     color: var(--primary-color);
-    transition: transform 0.3s ease, color 0.3s ease; /* Add transition for text */
+    transition: transform 0.3s ease, color 0.3s ease; 
 }
 
 .project-item h3 {
     margin-top: 0;
-    font-size: 1.8em; /* Smaller font size */
+    font-size: 1.8em; 
     margin-bottom: 15px;
-    transform: skewX(-5deg); /* Subtle skew for project titles */
+    transform: skewX(-5deg); 
     font-family: var(--font-family-display);
 }
 
 .project-item p {
     color: var(--text-color);
-    font-size: 0.9em; /* Smaller font size */
+    font-size: 0.9em; 
 }
 
 .project-item:hover h3,
 .project-item:focus h3 {
-    transform: skewX(-8deg) translateY(-8px); /* More pronounced lift and skew */
-    color: var(--accent-color); /* Change color on hover */
+    transform: skewX(-8deg) translateY(-8px); 
+    color: var(--accent-color); 
 }
 
 .project-item:hover p {
-    transform: translateY(-8px); /* More pronounced lift */
-    color: var(--primary-color); /* Keep primary color or change as desired */
+    transform: translateY(-8px); 
+    color: var(--primary-color); 
 }
 
-/* Project Overlay Styles */
+
 .project-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.95); /* Dark overlay */
+    background-color: rgba(0, 0, 0, 0.95); 
     display: flex;
     justify-content: center;
-    align-items: center; /* Center vertically */
-    z-index: 10000; /* On top of everything */
+    align-items: center; 
+    z-index: 10000; 
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -529,7 +529,7 @@ section.active .stagger-in {
     max-width: 800px;
     width: 90%;
     position: relative;
-    clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%); /* Angular shape */
+    clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%); 
     border: 2px solid var(--secondary-color);
 }
 
@@ -581,7 +581,7 @@ section.active .stagger-in {
     color: var(--primary-color);
     font-size: 1.2em;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%); /* Angular input shape */
+    clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%); 
 }
 
 #contact form input:focus, #contact form textarea:focus {
@@ -598,42 +598,42 @@ section.active .stagger-in {
 
 @media (max-width: 768px) {
   body {
-    font-size: 12px; /* Base font size for better readability */
+    font-size: 12px; 
   }
 
-  /* Header adjustments */
+  
   header {
     height: 60px;
     padding: 0 20px;
-    clip-path: none; /* Remove angular shape for simplicity on mobile */
+    clip-path: none; 
   }
 
   .logo {
     font-size: 2em;
     letter-spacing: 3px;
-    transform: none; /* Remove skew for logo */
+    transform: none; 
   }
 
-  /* Hide sidebar on mobile */
+  
   #sidebar-nav {
     position: fixed;
     top: 0;
-    left: -100%; /* Start off-screen */
+    left: -100%; 
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.98); /* Darker overlay */
-    z-index: 1001; /* Above header */
-    padding-top: 80px; /* Space for header */
+    background-color: rgba(0, 0, 0, 0.98); 
+    z-index: 1001; 
+    padding-top: 80px; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     transition: left 0.3s ease-in-out;
-    clip-path: none; /* Remove angular shape */
+    clip-path: none; 
   }
 
   #sidebar-nav.active {
-    left: 0; /* Slide in */
+    left: 0; 
   }
 
   #sidebar-nav ul {
@@ -648,46 +648,46 @@ section.active .stagger-in {
   #sidebar-nav ul li a {
     font-size: 2em;
     padding: 20px;
-    clip-path: none; /* Remove angular shape */
+    clip-path: none; 
     margin-right: 0;
   }
 
-  /* Add a hamburger icon */
+  
   .menu-toggle {
-    display: block; /* Show hamburger icon */
+    display: block; 
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 1002; /* Above sidebar */
+    z-index: 1002; 
     font-size: 2em;
     color: var(--primary-color);
     cursor: pointer;
   }
 
-  /* HUD Status Bar adjustments */
+  
   #hud-status {
-    top: 60px; /* Below header */
+    top: 60px; 
     left: 0;
     width: 100%;
     height: 50px;
     padding: 0 20px;
     font-size: 1.2em;
-    clip-path: none; /* Remove angular shape */
+    clip-path: none; 
   }
 
-  /* Main content adjustments */
+  
   main {
     margin-left: 0;
-    padding-top: 120px; /* Offset for header + HUD */
+    padding-top: 120px; 
     width: 100%;
   }
 
   section {
-    top: 120px; /* Below header + HUD */
+    top: 120px; 
     height: calc(100% - 120px);
     padding: 20px;
-    transform: none; /* Remove initial slide-in transform */
-    transition: opacity 0.5s ease; /* Simpler transition */
+    transform: none; 
+    transition: opacity 0.5s ease; 
   }
 
   section.active {
@@ -699,7 +699,7 @@ section.active .stagger-in {
     margin-bottom: 20px;
     padding-left: 10px;
     border-left: 5px solid var(--accent-color);
-    transform: none; /* Remove skew for titles */
+    transform: none; 
   }
 
   section h2::after {
@@ -709,51 +709,51 @@ section.active .stagger-in {
     left: 10px;
   }
 
-  /* Home Section Specifics */
+  
   .home-title {
     font-size: 3.5em;
     margin-bottom: 10px;
-    transform: none; /* Remove skew */
+    transform: none; 
   }
 
   .home-subtitle {
     font-size: 1.2em;
     margin-bottom: 30px;
     max-width: 100%;
-    transform: none; /* Remove skew */
+    transform: none; 
   }
 
   .btn {
     padding: 15px 30px;
     font-size: 0.9em;
-    transform: none; /* Remove skew */
-    clip-path: none; /* Remove angular shape */
+    transform: none; 
+    clip-path: none; 
   }
 
   .btn:hover {
-    transform: translateY(-3px) scale(1.02); /* Simpler hover effect */
+    transform: translateY(-3px) scale(1.02); 
   }
 
   
   .project-grid {
-    grid-template-columns: 1fr; /* Single column for projects */
+    grid-template-columns: 1fr; 
     gap: 20px;
   }
 
   .project-item {
     padding: 20px;
-    clip-path: none; /* Remove angular shape */
-    min-height: auto; /* Allow height to adjust to content */
+    clip-path: none; 
+    min-height: auto; 
   }
 
   .project-item:hover {
-    transform: translateY(-5px) scale(1.01); /* Simpler hover effect */
+    transform: translateY(-5px) scale(1.01); 
   }
 
   .project-item h3 {
     font-size: 1.5em;
     margin-bottom: 10px;
-    transform: none; /* Remove skew */
+    transform: none; 
   }
 
   .project-item:hover h3 {
@@ -768,7 +768,7 @@ section.active .stagger-in {
     transform: none;
   }
 
-  /* Project Overlay */
+  
   .project-overlay-content {
     padding: 30px;
     width: 95%;
@@ -826,7 +826,7 @@ section.active .stagger-in {
   }
 
   main {
-    padding-top: 90px; /* Offset for smaller header + HUD */
+    padding-top: 90px; 
   }
 
   section {
