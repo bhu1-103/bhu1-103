@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'home', title: 'HOME' },
         { id: 'about', title: 'ABOUT ME' },
         { id: 'projects', title: 'PROJECTS' },
-        { id: 'resume', title: 'RESUME' },
         { id: 'contact', title: 'CONTACT' }
     ];
 
@@ -170,8 +169,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Configured Raspberry Pi Zero 2 W in USB gadget mode to spoof an Apple Magic Keyboard, undetected by the host. Developed a custom scripting language for rapid, precise input, enabling automation and advanced scripting capabilities.'
         },
         'ai-workflow-assistant': {
-            title: 'AI Workflow Assistant',
-            description: 'Developed a script integrated with my window manager to serve as a personal assistant, automating text summarization, task management, and media streaming. It includes AI-driven content suggestions and key bindings for an efficient, hands-free workflow.'
+            title: 'Voice-Controlled Desktop Assistant',
+            description: 'A custom-built voice assistant for Linux using Python, Vosk (offline speech recognition), and Piper (text-to-speech). It listens for wake words, processes natural language commands with fuzzy matching, and executes a variety of system-level tasks like opening applications, controlling music, adjusting settings, and summarizing clipboard content using a local LLM API. The assistant provides spoken responses and desktop notifications, offering a smooth, hands-free user experience. Designed for speed, privacy, and full offline functionality.'
         },
         'rfid-security': {
             title: 'RFID Security',
