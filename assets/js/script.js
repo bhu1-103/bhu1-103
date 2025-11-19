@@ -3,7 +3,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('#sidebar-nav ul li a');
     const sections = document.querySelectorAll('main section');
-    const homeBtn = document.querySelector('#home .btn');
     const hudTitle = document.getElementById('hud-title');
     const hudPageIndicator = document.getElementById('hud-page-indicator');
     const menuToggle = document.querySelector('.menu-toggle');
@@ -11,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Define the order of sections for the page indicator
     const sectionOrder = [
-        { id: 'home', title: 'HOME' },
+        { id: 'dashboard', title: 'DASHBOARD' },
         { id: 'about', title: 'ABOUT ME' },
         { id: 'projects', title: 'PROJECTS' },
         { id: 'contact', title: 'CONTACT' }
@@ -132,124 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Handle home button click
-    if (homeBtn) {
-        homeBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            showSection('projects'); // Navigate to projects section
-        });
-    }
-
-    // Project Overlay Logic
-    const projectItems = document.querySelectorAll('.project-item');
-    const projectOverlay = document.getElementById('project-overlay');
-    const overlayTitle = document.getElementById('overlay-title');
-    const overlayDescription = document.getElementById('overlay-description');
-    const closeButton = document.querySelector('.close-button');
-
-    const projectDetails = {
-        'cappy': {
-            title: 'Cappy: Wireless Network Simulator',
-            description: 'A 3D Wi-Fi network simulator powered by Komondor, shell scripts, and ML. Integrates OpenGL visualizations, custom map generation, throughput prediction, and real-time interactive exploration.'
-        },
-        'synthwave-h': {
-            title: 'synthwave.h',
-            description: 'Custom OpenGL header-only library for generating vaporwave-style visuals — grids, pyramids, suns — used in data visualization and personal projects. It has been cross-compiled and ported to platforms like the Nintendo DSi and PS Vita.'
-        },
-        'yt-tui': {
-            title: 'yt-tui',
-            description: 'A terminal-first YouTube downloader written in zsh. Supports fuzzy searching, batch downloading via text file, conversion to MP3, and syncing to iPod/PS Vita.'
-        },
-        'automated-game-player': {
-            title: 'Automated Game Player',
-            description: 'Designed a servo-controlled gaming system with Raspberry Pi that uses live camera feedback for real-time navigation and converts visual data into automated keyboard inputs.'
-        },
-        'usb-rubber-ducky': {
-            title: 'USB Rubber Ducky',
-            description: 'Configured Raspberry Pi Zero 2 W in USB gadget mode to spoof an Apple Magic Keyboard, undetected by the host. Developed a custom scripting language for rapid, precise input, enabling automation and advanced scripting capabilities.'
-        },
-        'ai-workflow-assistant': {
-            title: 'Voice-Controlled Desktop Assistant',
-            description: 'A custom-built voice assistant for Linux using Python, Vosk (offline speech recognition), and Piper (text-to-speech). It listens for wake words, processes natural language commands with fuzzy matching, and executes a variety of system-level tasks like opening applications, controlling music, adjusting settings, and summarizing clipboard content using a local LLM API. The assistant provides spoken responses and desktop notifications, offering a smooth, hands-free user experience. Designed for speed, privacy, and full offline functionality.'
-        },
-        'rfid-security': {
-            title: 'RFID Security',
-            description: 'Developed a dynamic RFID card ID-changing system to prevent cloned cards from being used, with real-time alerts for unauthorized access and detailed access logs for security auditing.'
-        },
-        'terminal-video-player': {
-            title: 'Terminal Video Player',
-            description: 'Built a video-to-ASCII player using ffmpeg and shell scripting to convert video frames to ASCII and stream them in real-time inside the terminal.'
-        },
-        'gif-clock': {
-            title: 'GIF Clock',
-            description: 'A simple SDL2-based clock that displays time using animated GIF digits. Built in C, it has been cross-compiled for ARM to run on platforms like the Raspberry Pi, with support for custom themes and real-time rendering.'
-        },
-        'wii-homebrew': {
-            title: 'Wii Homebrew & Motion Control',
-            description: 'Explored Wii homebrew, connecting Wiimotes via bluetoothctl and using kernel modules to emulate mouse control with accelerometer data. Repo includes setup scripts, motion control experiments, and WBFS automation for RVZ/ISO to SD deployment.'
-        }
-    };
-
-    projectItems.forEach(item => {
-        const projectId = item.dataset.projectId;
-        item.style.backgroundImage = `url(assets/images/${projectId}.jpg)`;
-
-        item.addEventListener('click', () => {
-            const project = projectDetails[projectId];
-            if (project) {
-                overlayTitle.textContent = project.title;
-                overlayDescription.textContent = project.description;
-                projectOverlay.classList.add('active');
-                projectOverlay.focus(); // Focus the overlay when it opens
-            }
-        });
-
-        item.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                item.click(); // Simulate click to open overlay
-            } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-                e.preventDefault();
-                const currentItemIndex = Array.from(projectItems).indexOf(item);
-                let nextItemIndex = currentItemIndex;
-
-                if (e.key === 'ArrowDown') {
-                    nextItemIndex = (currentItemIndex + 1) % projectItems.length;
-                } else if (e.key === 'ArrowUp') {
-                    nextItemIndex = (currentItemIndex - 1 + projectItems.length) % projectItems.length;
-                }
-                projectItems[nextItemIndex].focus();
-            } else if (e.key === 'ArrowLeft') {
-                e.preventDefault();
-                // Move focus back to the last active navigation link or first if none
-                const activeNavLink = document.querySelector('#sidebar-nav ul li a.active-nav');
-                if (activeNavLink) {
-                    activeNavLink.focus();
-                } else {
-                    navLinks[0].focus();
-                }
-            }
-        });
-    });
-
-    closeButton.addEventListener('click', () => {
-        projectOverlay.classList.remove('active');
-    });
-
-    // Close overlay with Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && projectOverlay.classList.contains('active')) {
-            projectOverlay.classList.remove('active');
-            // Return focus to the project item that opened the overlay
-            const focusedProjectItem = document.querySelector('.project-item:focus');
-            if (focusedProjectItem) {
-                focusedProjectItem.focus();
-            }
-        }
-    });
-
-    // Show the home section by default on load
-    showSection('home');
+    // Show the dashboard section by default on load
+    showSection('dashboard');
 
     // Set initial focus to the first navigation link
     navLinks[0].focus();

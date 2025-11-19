@@ -881,10 +881,366 @@ section.active .stagger-in {
     font-size: 1.8em;
   }
 
-  #contact form input, #contact form textarea {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#contact form input, #contact form textarea {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     padding: 12px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     margin-bottom: 15px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.server-grid {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    display: grid;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    grid-template-columns: repeat(2, 1fr); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    gap: 30px; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.server-item {
+
+    background-color: #202020;
+
+    padding: 40px;
+
+    border-radius: 0;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+
+    border: 2px solid transparent;
+
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 95% 100%, 0 100%); 
+
+    position: relative;
+
+    overflow: hidden;
+
+    cursor: pointer; 
+
+    min-height: 150px; 
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-start; 
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+}
+
+
+
+.server-item::before {
+
+    content: '';
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.6); 
+
+    z-index: 1;
+
+}
+
+
+
+.server-item:hover,
+
+.server-item:focus {
+
+    transform: translateY(-10px) rotateZ(1deg) scale(1.02); 
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px var(--secondary-color); 
+
+    border-color: var(--secondary-color);
+
+    background-color: #2a2a2a; 
+
+}
+
+
+
+.server-item h3,
+
+.server-item p {
+
+    position: relative;
+
+    z-index: 2; 
+
+    color: var(--primary-color);
+
+    transition: transform 0.3s ease, color 0.3s ease; 
+
+}
+
+
+
+.server-item h3 {
+
+    margin-top: 0;
+
+    font-size: 1.8em; 
+
+    margin-bottom: 15px;
+
+    transform: skewX(-5deg); 
+
+    font-family: var(--font-family-display);
+
+}
+
+
+
+.server-item p {
+
+    color: var(--text-color);
+
+    font-size: 0.9em; 
+
+}
+
+
+
+.server-item:hover h3,
+
+.server-item:focus h3 {
+
+    transform: skewX(-8deg) translateY(-8px); 
+
+    color: var(--accent-color); 
+
+}
+
+
+
+.server-item:hover p {
+
+    transform: translateY(-8px); 
+
+    color: var(--primary-color); 
+
 }
 
 

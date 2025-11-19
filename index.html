@@ -14,8 +14,7 @@
 
     <aside id="sidebar-nav">
         <ul>
-            <li><a href="#home" tabindex="0">HOME</a></li>
-            <li><a href="#about" tabindex="0">ABOUT</a></li>
+            <li><a href="#dashboard" tabindex="0">DASHBOARD</a></li>
             <li><a href="#projects" tabindex="0">PROJECTS</a></li>
             <li><a href="#contact" tabindex="0">CONTACT</a></li>
         </ul>
@@ -27,29 +26,27 @@
     </div>
 
     <main>
-        <section id="home">
+        <section id="dashboard">
             <div class="section-content">
-                <h1 class="home-title stagger-in">BHU1</h1>
-                <a href="#projects" class="btn home-btn stagger-in">VIEW WORK</a>
-            </div>
-        </section>
-
-        <section id="about">
-            <div class="section-content">
-                <h2 class="stagger-in">ABOUT ME</h2>
-                <p class="stagger-in">I build systems that do things — not just look good. Whether it’s a shell script that reacts to ambient light or a C library that draws synthwave animations using opengl, I focus on making machines respond, automate, and visualize in real time.</p>
-                <p class="stagger-in">My background isn’t formalized through degrees or certs — it’s through obsessive building, porting, and tearing down systems. I’ve written assistants that convert PDFs to human-like voiceovers, tools that convert videos to ASCII art, and scripts that sync wireless sensors with OpenGL renderers.</p>
-                <p class="stagger-in">I maintain a personal toolkit called <a href="https://github.com/bhu1-103/swiss-army-katana">swiss-army-katana</a> — a constantly evolving repository filled with shell utilities, rendering libraries, desktop automations, cross-compilation projects, and experiments that don't belong anywhere else. This includes things like:</p>
-                <ul class="stagger-in">
-                    <li><strong>Real-time Visualizers:</strong> <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/opengl/synthwave/v0.5">synthwave.h</a> (OpenGL vaporwave renderer), <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/opengl/fps-template">fps-template</a>, and 3D demos.</li>
-                    <li><strong>Productivity Tools:</strong> <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/timer-hyprland.sh">timer wm based</a>, <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/template-handler">template-handler</a> for project bootstrapping, <a href="https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/cool-stuff/qrgen.sh">qr based audio transfer</a>, <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/pdf2audiobook">PDF-to-audiobook pipelines</a>.</li>
-                    <li><strong>System Tools:</strong> <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/auto-rotate">autorotation</a>, <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/auto-brightness">auto-brightness</a>, <a href="https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/cool-stuff/headphone-jack-detect.sh">headphone jack detection</a>, <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/assistant">voice-command interfaces</a>, and reactive scripts for daily use.</li>
-                    <li><strong>Hardware/Platform Experiments:</strong> from <a href="https://github.com/bhu1-103/wii-stuff">Wiimote-controlled mouse inputs</a> to <a href="https://github.com/bhu1-103/graviton">keyboard spoofers</a>.</li>
-                    <li><strong>Cross-compilation Work:</strong> Building projects for <a href="https://github.com/bhu1-103/wii-stuff">Wii</a>, <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/psp">PS Vita</a>, <a href="https://github.com/bhu1-103/homebrew/tree/main/3ds">Nintendo 3DS</a>, <a href="https://github.com/bhu1-103/homebrew/tree/main/psp">PSP</a>, <a href="https://github.com/bhu1-103/swiss-army-katana/tree/main/libnds">Nintendo DSi</a>, using x86 dev environments.</li>
-                </ul>
-                <p class="stagger-in">I like working close to the hardware. I write mostly in C and shell because they give me the control I need. Lua when I want lightweight scripting, and Python if a library demands it.</p>
-                <p class="stagger-in">I spend a lot of time listening to music while tinkering with systems — late nights, rain outside, and code on the screen. I'm not driven by trends or frameworks. I care about efficiency, automation, and building things that make systems work better with less.</p>
-                <p class="stagger-in">If I can make something lighter, faster, or able to run on underpowered hardware, I’ll try it.</p>
+                <h2 class="stagger-in">DASHBOARD</h2>
+                <div class="server-grid stagger-in">
+                    <a href="https://watch.bhu1.xyz" target="_blank" class="server-item stagger-in">
+                        <h3>Jellyfin</h3>
+                        <p>watch.bhu1.xyz</p>
+                    </a>
+                    <a href="https://files.bhu1.xyz" target="_blank" class="server-item stagger-in">
+                        <h3>FTP</h3>
+                        <p>files.bhu1.xyz</p>
+                    </a>
+                    <a href="https://play.bhu1.xyz" target="_blank" class="server-item stagger-in">
+                        <h3>Music</h3>
+                        <p>play.bhu1.xyz</p>
+                    </a>
+                    <a href="https://demucs.bhu1.xyz" target="_blank" class="server-item stagger-in">
+                        <h3>Demucs</h3>
+                        <p>demucs.bhu1.xyz</p>
+                    </a>
+                </div>
             </div>
         </section>
 
