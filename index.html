@@ -1,3 +1,77 @@
-# My Resume
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhuvan E - Resume</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f6fa;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
 
-[View My Resume](resume.pdf)
+        header {
+            background: #2f3640;
+            color: #f5f6fa;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        iframe {
+            width: 80%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 1px solid #ccc;
+        }
+
+        .download-btn {
+            background: #0097e6;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .download-btn:hover {
+            background: #007bb5;
+        }
+
+        .controls {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>Bhuvan E - Resume</header>
+
+    <main>
+        <iframe src="resume.pdf"></iframe>
+    </main>
+
+    <div class="controls">
+        <a href="resume.pdf" download class="download-btn">Download PDF</a>
+    </div>
+
+</body>
+</html>
