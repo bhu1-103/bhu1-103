@@ -3,6 +3,8 @@
   --text: #eaeaf0;
   --muted: #9a9a9a;
   --accent: #ff0066;
+  --balance: #20C498;
+  --counter: #6600ff;
 }
 
 body {
@@ -13,27 +15,36 @@ body {
 }
 
 .container {
-  max-width: 680px;
+  max-width: 600px;
   margin: 100px auto;
   padding: 0 20px;
 }
 
-.avatar {
+.avatar-homepage {
   width: 168px;
-  border-radius: 18px;
-  margin-bottom: 24px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  display: block;
 }
 
-h1 {
-  font-size: 2rem;
-  margin-bottom: 18px;
+.avatar:hover {
+  animation: floaty 1s ease-in-out infinite;
+}
+
+.back-btn {
+  margin-top: 40px;
+  border-color: var(--balance);
+}
+
+.back-btn::before {
+  background: var(--balance);
 }
 
 p {
   color: var(--muted);
-  line-height: 1.7;
-  max-width: 560px;
-  margin-bottom: 14px;
+  line-height: 1.75;
+  max-width: 520px;
+  margin-bottom: 16px;
 }
 
 .links {
@@ -44,10 +55,173 @@ p {
   margin-right: 16px;
   text-decoration: none;
   color: var(--text);
+  border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
 }
 
 .links a:hover {
+  color: #fff;
+  text-shadow: 
+    1px 1px 6px var(--accent),
+    -1px -1px 6px var(--counter);
+    animation: glowyBorder 2s ease-in-out infinite;
+  cursor: crosshair;
+}
+
+@keyframes glowyBorder {
+  0%, 100% {
+    border-top-color: var(--accent);
+    border-bottom-color: var(--counter);
+  }
+  50% {
+    border-top-color: var(--counter);
+    border-bottom-color: var(--accent);
+  }
+}
+
+.content {
+  margin-top: 10px;
+}
+
+.main-heading-homepage {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: inline-block;
+  letter-spacing: 0.02em;
+  text-shadow: 
+    1px 1px 2px var(--counter),
+    -1px -1px 2px var(--accent);
+}
+
+.main-heading-homepage:before {
+  content: "\\（・。・）/\A";
+  font-weight: 700;
+  white-space: pre;
   color: var(--accent);
-  border-color: var(--accent);
+  display: block;
+}
+
+.main-heading-homepage:hover{
+  text-shadow: 
+    1px 1px 2px var(--accent),
+    -1px -1px 5px var(--balance);
+}
+
+/* I love this */
+@keyframes flap {
+  0%, 100% {
+    content: "\\（＾。＾）/\A";
+  }
+  50% {
+    content: "/（＾。＾）\\\A";
+  }
+}
+
+.main-heading-homepage:hover:before {
+  animation: flap 0.2s infinite, floaty 0.4s ease-in-out infinite;
+  color: #f39;
+  filter: drop-shadow(0 0 4px var(--accent));
+}
+
+@keyframes floaty {
+  0%, 100% {transform: translateY(0) scale(1); }
+  50% {transform: translateY(-2px) scale(1.05); }
+}
+
+/* Finalize this later*/
+.projects-btn {
+  position: relative;
+  display: inline-block;
+  padding: 8px 14px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.projects-btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 200%;
+  height: 0%;
+  background: var(--accent);
+  transition: height 0.5s ease;
+  z-index: -1;
+  border-top-left-radius: 40% 20%;
+  border-top-right-radius: 40% 20%;
+}
+
+.projects-btn:hover::before {
+  height: 100%;
+  animation: wave 1s linear infinite;
+}
+
+.projects-btn:hover {
+  color: #000;
+}
+
+/* this is insane, can't believe i am finally gonna write some js*/
+
+.liquid-overlay {
+  position: fixed;
+  left: 0;
+  top: auto;
+  bottom: 0;
+  width: 100%;
+  height: 0%;
+  background: var(--accent);
+  z-index: 9999;
+  pointer-events: none;
+  /*border-top-left-radius: 40% 10%;
+  border-top-right-radius: 40% 10%;*/
+}
+
+@keyframes liquidFullCycle {
+  0%   { height: 0%; }
+  50%  { height: 100%; }
+  100% { height: 0%; }
+}
+
+@keyframes wave {
+  0% {transform: translateX(0);}
+  100% {transform: translateX(-50%)}
+}
+
+.liquid-overlay.cycle {
+  animation: liquidFullCycle 1.4s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+
+/* I love this too */
+h2:before {
+  content: "「";
+  color: var(--accent);
+}
+
+h2:after {
+  content: "」";
+  color: var(--accent);
+}
+
+.container h2 {
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+  padding: 15px;
+  border-left: 2px solid transparent;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+
+.container h2:hover {
+  border-left: 4px solid var(--balance);
+  padding-left: 25px;
+  background: rgba(32, 196, 152, 0.05);
+  color: #fff;
+  transform: scale(1.02);
 }
