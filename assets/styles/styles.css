@@ -172,21 +172,22 @@ p {
 .liquid-overlay {
   position: fixed;
   left: 0;
-  top: auto;
   bottom: 0;
   width: 100%;
   height: 0%;
   background: var(--accent);
   z-index: 9999;
   pointer-events: none;
-  /*border-top-left-radius: 40% 10%;
-  border-top-right-radius: 40% 10%;*/
 }
 
-@keyframes liquidFullCycle {
+@keyframes liquidFill {
   0%   { height: 0%; }
-  50%  { height: 100%; }
-  100% { height: 0%; }
+  100%  { height: 100%; }
+}
+
+@keyframes liquidDrain {
+  0%   { height: 100%; }
+  100%  { height: 0%; }
 }
 
 @keyframes wave {
@@ -194,9 +195,8 @@ p {
   100% {transform: translateX(-50%)}
 }
 
-.liquid-overlay.cycle {
-  animation: liquidFullCycle 1.4s cubic-bezier(0.22,1,0.36,1) forwards;
-}
+.liquid-overlay.fill { animation: liquidFill 0.7s cubic-bezier(0.22,1,0.36,1) forwards;}
+.liquid-overlay.drain { animation: liquidFill 0.7s cubic-bezier(0.22,1,0.36,1) forwards;}
 
 /* I love this too */
 h2:before {

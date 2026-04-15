@@ -1,56 +1,40 @@
-const btn = document.querySelector('.projects-btn');
 const overlay = document.querySelector('.liquid-overlay');
+const btn = document.querySelector('.projects-btn');
 const backBtn = document.querySelector('.back-btn');
 
-window.addEventListener('pageshow', (event) => {
-  if (overlay && event.persisted) {
+window.addEventListener('load', () => {
+  if (!overlay) return;
+  overlay.style.height = '100%';
+  overlay.getBoundingClinetRect();
+  overlay.classList.add('drain');
+  overlay.addEventListener('animationend', () => {
     overlay.style.display = 'none';
-    overlay.classList.remove('cycle');
+  }, { once: true});
+})
+
+function handleTransition(e,targetUrl) {
+  e.preventDefault();
+  if (!overlay) {
+    window.location.href = targetUrl;A
+    return;
   }
-});
+  overlay.style.display = 'block';
+  overlay.classList.remove('drain');
+  overlay.classList.add('fill');
+  
+  overlay.addEventListener('animationend', () => {
+    window.location.href = targetUrl;
+  }, {once: true});
+}
 
-/* homepage.html script*/
-if (btn && overlay) {
+if (btn) {
   btn.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    const rect = btn.getBoundingClientRect();
-    /*overlay.style.left = rect.left + rect.width / 2 + 'px';
-    overlay.style.top= rect.top + rect.height / 2 + 'px';*/
-
-    overlay.style.display = 'block';
-    overlay.classList.remove('cycle');
-
-    overlay.classList.add('cycle');
-
-    setTimeout(() => {
-      window.location.href = btn.href;
-    }, 700);
-  });
+    handleTransition(e, btn.href);
+  })
 }
 
-/* projects.html script*/
-if (overlay && window.location.pathname.includes('projects')) {
-  window.addEventListener('load', () => {
-
-    setTimeout(() => {
-      overlay.style.display = 'none';
-    }, 700);
-  });
-}
-
-if (backBtn && overlay) {
-  backBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    overlay.style.display = 'block';
-
-    overlay.classList.remove('active', 'shrink', 'full', 'cycle');
-
-    overlay.classList.add('cycle');
-
-    setTimeout(() => {
-      window.location.href = backBtn.href;
-    }, 1400);
-  });
+if (backBtn) {
+  backBtn.addEventListener('click', e => {
+    handleTransition(e,backBtn.href);
+  })
 }
