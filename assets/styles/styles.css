@@ -196,7 +196,7 @@ p {
 }
 
 .liquid-overlay.fill { animation: liquidFill 0.7s cubic-bezier(0.22,1,0.36,1) forwards;}
-.liquid-overlay.drain { animation: liquidFill 0.7s cubic-bezier(0.22,1,0.36,1) forwards;}
+.liquid-overlay.drain { animation: liquidDrain 0.7s cubic-bezier(0.22,1,0.36,1) forwards;}
 
 /* I love this too */
 h2:before {

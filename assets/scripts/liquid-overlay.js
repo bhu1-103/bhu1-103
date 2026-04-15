@@ -5,7 +5,7 @@ const backBtn = document.querySelector('.back-btn');
 window.addEventListener('load', () => {
   if (!overlay) return;
   overlay.style.height = '100%';
-  overlay.getBoundingClinetRect();
+  overlay.getBoundingClientRect();
   overlay.classList.add('drain');
   overlay.addEventListener('animationend', () => {
     overlay.style.display = 'none';
@@ -15,7 +15,7 @@ window.addEventListener('load', () => {
 function handleTransition(e,targetUrl) {
   e.preventDefault();
   if (!overlay) {
-    window.location.href = targetUrl;A
+    window.location.href = targetUrl;
     return;
   }
   overlay.style.display = 'block';
