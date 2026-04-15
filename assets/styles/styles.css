@@ -6,15 +6,60 @@
   --balance: #20C498;
   --counter: #6600ff;
   --cursor-normal: url('../cursors/cursor-normal.png') 16 4, auto;
-  --cursor-click: url('../cursors/cursor-clickable-4.png') 16 5, pointer;
+  --cursor-click: url('../cursors/cursor-click.png') 16 5, pointer;
+}
+
+@font-face {
+  font-family: 'Bricolage';
+  src: url('../fonts/Bricolage_Grotesque/BricolageGrotesque-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Bricolage';
+  src: url('../fonts/Bricolage_Grotesque/BricolageGrotesque-Medium.ttf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'DynaPuff';
+  src: url('../fonts/DynaPuff/DynaPuff-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'DynaPuff';
+  src: url('../fonts/DynaPuff/DynaPuff-SemiBold.ttf');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Silkscreen';
+  src: url('../fonts/Silkscreen/Silkscreen-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Silkscreen';
+  src: url('../fonts/Silkscreen/Silkscreen-Bold.ttf');
+  font-weight: 700;
 }
 
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
+  font-family: 'Bricolage', system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
   cursor: var(--cursor-normal);
+}
+
+h1, h2 {
+  font-family: 'Silkscreen', system-ui, sans-serif;
+}
+
+.projects-btn,
+.main-heading-homepage{
+  font-family: 'DynaPuff', system-ui, sans-serif;
 }
 
 .container {
