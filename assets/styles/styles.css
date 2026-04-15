@@ -5,6 +5,8 @@
   --accent: #ff0066;
   --balance: #20C498;
   --counter: #6600ff;
+  --cursor-normal: url('../cursors/cursor-normal.png') 16 4, auto;
+  --cursor-click: url('../cursors/cursor-clickable-4.png') 16 5, pointer;
 }
 
 body {
@@ -12,6 +14,7 @@ body {
   font-family: system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
+  cursor: var(--cursor-normal);
 }
 
 .container {
@@ -29,6 +32,7 @@ body {
 
 .avatar:hover {
   animation: floaty 1s ease-in-out infinite;
+  cursor: var(--cursor-click);
 }
 
 .back-btn {
@@ -66,7 +70,7 @@ p {
     1px 1px 6px var(--accent),
     -1px -1px 6px var(--counter);
     animation: glowyBorder 2s ease-in-out infinite;
-  cursor: crosshair;
+  cursor: var(--cursor-click);
 }
 
 @keyframes glowyBorder {
@@ -89,6 +93,7 @@ p {
   font-weight: 700;
   margin-bottom: 20px;
   display: inline-block;
+  line-height: 1;
   letter-spacing: 0.02em;
   text-shadow: 
     1px 1px 2px var(--counter),
@@ -107,6 +112,7 @@ p {
   text-shadow: 
     1px 1px 2px var(--accent),
     -1px -1px 5px var(--balance);
+  cursor: var(--cursor-click);
 }
 
 /* I love this */
@@ -123,6 +129,7 @@ p {
   animation: flap 0.2s infinite, floaty 0.4s ease-in-out infinite;
   color: #f39;
   filter: drop-shadow(0 0 4px var(--accent));
+  cursor: var(--cursor-click);
 }
 
 @keyframes floaty {
@@ -165,6 +172,7 @@ p {
 
 .projects-btn:hover {
   color: #000;
+  cursor: var(--cursor-click);
 }
 
 /* this is insane, can't believe i am finally gonna write some js*/
@@ -195,8 +203,8 @@ p {
   100% {transform: translateX(-50%)}
 }
 
-.liquid-overlay.fill { animation: liquidFill 0.7s cubic-bezier(0.22,1,0.36,1) forwards;}
-.liquid-overlay.drain { animation: liquidDrain 0.7s cubic-bezier(0.22,1,0.36,1) forwards;}
+.liquid-overlay.fill { animation: liquidFill 0.4s cubic-bezier(0.22,1,0.36,1) forwards;}
+.liquid-overlay.drain { animation: liquidDrain 0.4s cubic-bezier(0.22,1,0.36,1) forwards;}
 
 /* I love this too */
 h2:before {
@@ -215,7 +223,7 @@ h2:after {
   padding: 15px;
   border-left: 2px solid transparent;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer;
+  cursor: var(--cursor-click);
 }
 
 .container h2:hover {
@@ -224,4 +232,5 @@ h2:after {
   background: rgba(32, 196, 152, 0.05);
   color: #fff;
   transform: scale(1.02);
+  cursor: var(--cursor-click);
 }
