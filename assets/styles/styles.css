@@ -22,36 +22,42 @@
   font-family: 'Bricolage';
   src: url('../fonts/Bricolage_Grotesque/BricolageGrotesque-Regular.ttf');
   font-weight: 400;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Bricolage';
   src: url('../fonts/Bricolage_Grotesque/BricolageGrotesque-Medium.ttf');
   font-weight: 500;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'DynaPuff';
   src: url('../fonts/DynaPuff/DynaPuff-Regular.ttf');
   font-weight: 400;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'DynaPuff';
   src: url('../fonts/DynaPuff/DynaPuff-SemiBold.ttf');
   font-weight: 600;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Silkscreen';
   src: url('../fonts/Silkscreen/Silkscreen-Regular.ttf');
   font-weight: 400;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Silkscreen';
   src: url('../fonts/Silkscreen/Silkscreen-Bold.ttf');
   font-weight: 700;
+  font-display: swap;
 }
 
 body {
