@@ -39,3 +39,8 @@ if (backBtn) {
   })
 }
 
+document.querySelectorAll('.project').forEach(p => {
+  p.addEventListener('click', () => {
+    p.classList.toggle('active');
+  });
+});

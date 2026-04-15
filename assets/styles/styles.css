@@ -9,6 +9,15 @@
   --cursor-click: url('../cursors/cursor-click.png') 16 5, pointer;
 }
 
+@media (max-width: 600px) {
+  .project-preview {
+    flex-direction: column;
+  }
+  .project-preview img {
+    max-width: 100%;
+  }
+}
+
 @font-face {
   font-family: 'Bricolage';
   src: url('../fonts/Bricolage_Grotesque/BricolageGrotesque-Regular.ttf');
@@ -58,20 +67,29 @@ h1, h2 {
 }
 
 .projects-btn,
-.main-heading-homepage{
+.main-heading-homepage,
+.main-heading {
   font-family: 'DynaPuff', system-ui, sans-serif;
 }
 
 .container {
-  max-width: 600px;
+  max-width: 70%;
   margin: 100px auto;
-  padding: 0 20px;
+  padding: 0 40px;
 }
 
 .avatar-homepage {
   width: 168px;
   border-radius: 20px;
   margin-bottom: 20px;
+  display: block;
+}
+
+.avatar {
+  width: 64px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  border-color: var(--counter);
   display: block;
 }
 
@@ -87,6 +105,50 @@ h1, h2 {
 
 .back-btn::before {
   background: var(--balance);
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.project-preview {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.25s ease;
+}
+
+.project-preview p {
+  flex: 2;
+  margin: 0;
+  padding-right: 10px;
+  min-width: 0;
+}
+
+.project-preview img {
+  flex: 1;
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.project.active .project-preview {
+  max-height: 600px;
+  opacity: 1;
+  margin-top: 10px;
+}
+
+.project:hover {
+  border-left: 4px solid var(--balance);
+  background: rgba(32,196,152,0.05);
 }
 
 p {
@@ -133,7 +195,8 @@ p {
   margin-top: 10px;
 }
 
-.main-heading-homepage {
+.main-heading-homepage,
+.main-heading {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 20px;
@@ -152,8 +215,16 @@ p {
   color: var(--accent);
   display: block;
 }
+.main-heading:before {
+  content: "\\（・。・）/\A";
+  font-weight: 700;
+  white-space: pre;
+  color: var(--accent);
+  display: inline-block;
+}
 
-.main-heading-homepage:hover{
+.main-heading-homepage:hover,
+.main-heading:hover {
   text-shadow: 
     1px 1px 2px var(--accent),
     -1px -1px 5px var(--balance);
@@ -170,8 +241,9 @@ p {
   }
 }
 
-.main-heading-homepage:hover:before {
-  animation: flap 0.2s infinite, floaty 0.4s ease-in-out infinite;
+.main-heading-homepage:hover:before,
+.main-heading:hover:before {
+  animation: flap 0.2s ease-in-out infinite, floaty 0.4s ease-in-out infinite;
   color: #f39;
   filter: drop-shadow(0 0 4px var(--accent));
   cursor: var(--cursor-click);
