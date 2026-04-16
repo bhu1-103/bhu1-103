@@ -3,8 +3,8 @@
 cp ./projects.html projects.html.bak
 
 echo -n "Enter Project Name: "
-read ProjectName
 ProjectNameUS=${ProjectName// /_}
+read ProjectNameUS
 
 echo -n "Enter Project Summary: "
 read ProjectSummary
@@ -27,9 +27,11 @@ while [[ $a == [yY] ]]; do
   [[ -z "$img_file" ]] && continue
 
   ext="${img_file##*.}"
-  cp "$img_file" "projects/$ProjectName"
-  echo "Added image $img_file to $ProjectName"
   ((i++))
+  new_name="$i.$ext"
+
+  cp "$img_file" "projects/$ProjectName/$new_name"
+  echo "Added image $img_file to $ProjectName"
   read "a?Add more images? (y/n): "
 done
 
