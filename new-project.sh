@@ -3,22 +3,22 @@
 cp ./projects.html projects.html.bak
 
 echo -n "Enter Project Name: "
+read ProjectName
 ProjectNameUS=${ProjectName// /_}
-read ProjectNameUS
 
 echo -n "Enter Project Summary: "
 read ProjectSummary
 
-if [[ -e "projects/$ProjectName" ]]; then
+if [[ -e "projects/$ProjectNameUS" ]]; then
   echo -e "Project already exists\nExiting"
   exit 1
 else
-  mkdir "projects/$ProjectName"
-  cp ./.templates/project-index.html projects/$ProjectName/index.html
+  mkdir "projects/$ProjectNameUS"
+  cp ./.templates/project-index.html projects/$ProjectNameUS/index.html
   echo "Created Project Files"
 fi
 
-i=$(ls "projects/$ProjectName" | grep -E '^[0-9]+\.' | wc -l)
+i=$(find "projects/$ProjectNameUS" -maxdepth 1 -type f -regex '.*/[0-9]+\..*' | wc -l)
 
 read "a?Add images? (y/n): "
 while [[ $a == [yY] ]]; do
@@ -30,7 +30,7 @@ while [[ $a == [yY] ]]; do
   ((i++))
   new_name="$i.$ext"
 
-  cp "$img_file" "projects/$ProjectName/$new_name"
+  cp "$img_file" "projects/$ProjectNameUS/$new_name"
   echo "Added image $img_file to $ProjectName"
   read "a?Add more images? (y/n): "
 done
@@ -47,9 +47,9 @@ NR == line { print; print content; next }
 
 echo "Referenced project to projects.html"
 
-sed -i "s/--PROJECTNAMEHERE--/$ProjectNameUS/g" ./projects.html
-sed -i "s/--PROJECTNAMEHERESPACES--/$ProjectName/g" ./projects.html
-sed -i "s/--PROJECTQUICKSUMMARYHERE--/$ProjectSummary/g" ./projects.html
-sed -i "s/--PROJECTNAMEHERE--/$ProjectNameUS/g" ./projects/$ProjectName/index.html
-sed -i "s/--PROJECTNAMEHERESPACES--/$ProjectName/g" ./projects/$ProjectName/index.html
-sed -i "s/--PROJECTQUICKSUMMARYHERE--/$ProjectSummary/g" ./projects/$ProjectName/index.html
+sed -i "s|--PROJECTNAMEHERE--|$ProjectNameUS|g" ./projects.html
+sed -i "s|--PROJECTNAMEHERESPACES--|$ProjectName|g" ./projects.html
+sed -i "s|--PROJECTQUICKSUMMARYHERE--|$ProjectSummary|g" ./projects.html
+sed -i "s|--PROJECTNAMEHERE--|$ProjectNameUS|g" ./projects/$ProjectNameUS/index.html
+sed -i "s|--PROJECTNAMEHERESPACES--|$ProjectName|g" ./projects/$ProjectNameUS/index.html
+sed -i "s|--PROJECTQUICKSUMMARYHERE--|$ProjectSummary|g" ./projects/$ProjectNameUS/index.html
