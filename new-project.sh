@@ -1,31 +1,53 @@
 #!/usr/bin/zsh
 
+cp ./projects.html projects.html.bak
+
 echo -n "Enter Project Name: "
 read ProjectName
-count=$(ls -la projects | grep $ProjectName | wc -l)
-if (( count != 0 )); then
-  echo -e "Project already exists\nExitting"
-  exit
+ProjectNameUS=${ProjectName// /_}
+
+echo -n "Enter Project Summary: "
+read ProjectSummary
+
+if [[ -e "projects/$ProjectName" ]]; then
+  echo -e "Project already exists\nExiting"
+  exit 1
 else
   mkdir "projects/$ProjectName"
-  cp templates/project-index.html projects/$ProjectName/index.html
+  cp ./.templates/project-index.html projects/$ProjectName/index.html
   echo "Created Project Files"
 fi
+
+i=$(ls "projects/$ProjectName" | grep -E '^[0-9]+\.' | wc -l)
 
 read "a?Add images? (y/n): "
 while [[ $a == [yY] ]]; do
   ranger --choosefile=/tmp/ranger ~/Pictures/screenshots
   img_file=$(cat /tmp/ranger 2>/dev/null)
   [[ -z "$img_file" ]] && continue
-  cp "$img_file projects/$ProjectName"
-  echo "Added image $img_file to $ProjectName"
 
+  ext="${img_file##*.}"
+  cp "$img_file" "projects/$ProjectName"
+  echo "Added image $img_file to $ProjectName"
+  ((i++))
   read "a?Add more images? (y/n): "
 done
 
 last_project=$(grep -n project-header projects.html | tail -n 1 | awk -F ":" '{print $1}')
-current_project=$(( $last_project + 11 ))
+current_project=$(( last_project + 8 ))
 
-add2main=$(cat ./templates/project-add2main.html)
+add2main=$(cat ./.templates/project-add2main.html)
 
-sed -i '${current_project}a\\$(add2main)' projects.html
+awk -v line="$current_project" -v content="$add2main" '
+NR == line { print; print content; next }
+1
+' projects.html > tmp && mv tmp projects.html
+
+echo "Referenced project to projects.html"
+
+sed -i "s/--PROJECTNAMEHERE--/$ProjectNameUS/g" ./projects.html
+sed -i "s/--PROJECTNAMEHERESPACES--/$ProjectName/g" ./projects.html
+sed -i "s/--PROJECTQUICKSUMMARYHERE--/$ProjectSummary/g" ./projects.html
+sed -i "s/--PROJECTNAMEHERE--/$ProjectNameUS/g" ./projects/$ProjectName/index.html
+sed -i "s/--PROJECTNAMEHERESPACES--/$ProjectName/g" ./projects/$ProjectName/index.html
+sed -i "s/--PROJECTQUICKSUMMARYHERE--/$ProjectSummary/g" ./projects/$ProjectName/index.html
