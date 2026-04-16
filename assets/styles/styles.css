@@ -162,6 +162,8 @@ p {
   line-height: 1.75;
   max-width: 520px;
   margin-bottom: 16px;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 .links {
@@ -333,11 +335,23 @@ p {
 h2:before {
   content: "「";
   color: var(--accent);
+  display: inline-block;
+  font-size: 2.0rem;
+  font-weight: 700;
+  margin-right: 8px;
+  opacity: 0.75;
+  transform: translateY(-4px);
 }
 
 h2:after {
   content: "」";
   color: var(--accent);
+  display: inline-block;
+  font-size: 2.0rem;
+  font-weight: 700;
+  margin-left: 8px;
+  opacity: 0.75;
+  transform: translateY(4px);
 }
 
 .container h2 {
@@ -356,4 +370,21 @@ h2:after {
   color: #fff;
   transform: scale(1.02);
   cursor: var(--cursor-click);
+}
+
+@keyframes font-color {
+  0%, 100%{color: var(--accent);}
+  50% {color: var(--counter);}
+}
+
+.container h2:hover:before {
+  transform: translateY(-3px) translateX(-4px);
+  opacity: 1;
+  animation: floaty 1s ease-in-out infinite, font-color 2s ease-in-out infinite;
+}
+
+.container h2:hover:after {
+  transform: translateY(3px) translateX(4px);
+  opacity: 1;
+  animation: floaty 1s ease-in-out infinite, font-color 2s ease-in-out infinite;
 }
