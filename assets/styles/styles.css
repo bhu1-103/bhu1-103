@@ -128,6 +128,8 @@ h1, h2 {
   overflow: hidden;
   opacity: 0;
   transition: max-height 0.3s ease, opacity 0.25s ease;
+  cursor: var(--cursor-click);
+
 }
 
 .project-preview p {
@@ -360,7 +362,6 @@ h2:after {
   padding: 15px;
   border-left: 2px solid transparent;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: var(--cursor-click);
 }
 
 .container h2:hover {
@@ -369,6 +370,13 @@ h2:after {
   background: rgba(32, 196, 152, 0.05);
   color: #fff;
   transform: scale(1.02);
+}
+
+.project-header {
+  cursor: var(--cursor-click);
+}
+
+.project-header:hover {
   cursor: var(--cursor-click);
 }
 
