@@ -1,7 +1,7 @@
 #!/usr/bin/zsh
 
 #fallback manager
-set -ex
+set -e
 trap 'echo "Error Occured. Restoring projects.html"; mv projects.html.bak projects.html' ERR
 cp ./projects.html projects.html.bak
 echo "Backup Created"
