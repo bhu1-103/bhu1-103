@@ -1,6 +1,5 @@
 const overlay = document.querySelector('.liquid-overlay');
-const btn = document.querySelector('.projects-btn');
-const backBtn = document.querySelector('.back-btn');
+const buttons = document.querySelectorAll('.projects-btn');
 
 window.addEventListener('load', () => {
   if (!overlay) return;
@@ -27,20 +26,15 @@ function handleTransition(e,targetUrl) {
   }, {once: true});
 }
 
-if (btn) {
-  btn.addEventListener('click', (e) => {
-    handleTransition(e, btn.href);
-  })
-}
-
-if (backBtn) {
-  backBtn.addEventListener('click', e => {
-    handleTransition(e,backBtn.href);
-  })
-}
-
 document.querySelectorAll('.project').forEach(p => {
   p.addEventListener('click', () => {
     p.classList.toggle('active');
+  });
+});
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    handleTransition(e, btn.href);
   });
 });
