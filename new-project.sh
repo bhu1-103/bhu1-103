@@ -1,7 +1,7 @@
 #!/usr/bin/zsh
 
 #fallback manager
-set -e
+set -ex
 trap 'echo "Error Occured. Restoring projects.html"; mv projects.html.bak projects.html' ERR
 cp ./projects.html projects.html.bak
 echo "Backup Created"
@@ -33,16 +33,17 @@ else
 fi
 
 #numbering
-i=$(find "projects/$ProjectNameUS" -maxdepth 1 -type f -regex '.*/[0-9]+\..*' | wc -l)
+i=$(find "projects/$ProjectNameUS" -maxdepth 1 -type f -regex '.*/[0-9]+\..*' 2>/dev/null | wc -l || echo 0)
 
 read "a?Add images? (y/n): "
 while [[ -z "$a" || $a == [yY] ]]; do
   ranger --choosefile=/tmp/ranger ~/Pictures/screenshots
-  img_file=$(cat /tmp/ranger 2>/dev/null)
+  img_file=""
+  [[ -f /tmp/ranger ]] && img_file=$(cat /tmp/ranger)
   [[ -z "$img_file" ]] && continue
 
   ext="${img_file##*.}"
-  ((i++))
+  ((++i))
   new_name="$i.$ext"
 
   cp "$img_file" "projects/$ProjectNameUS/$new_name"
