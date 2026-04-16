@@ -80,8 +80,8 @@ h1, h2 {
 
 .container {
   max-width: 70%;
-  margin: 100px auto;
-  padding: 0 40px;
+  margin-left: 7.5%;
+  padding: 20px 100px;
 }
 
 .avatar-homepage {
@@ -358,7 +358,6 @@ h2:after {
 
 .container h2 {
   font-size: 1.1rem;
-  margin-bottom: 24px;
   padding: 15px;
   border-left: 2px solid transparent;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -388,11 +387,11 @@ h2:after {
 .container h2:hover:before {
   transform: translateY(-3px) translateX(-4px);
   opacity: 1;
-  animation: floaty 1s ease-in-out infinite, font-color 2s ease-in-out infinite;
+  animation: floaty 1s ease-in-out infinite, font-color 1s ease-in-out infinite;
 }
 
 .container h2:hover:after {
   transform: translateY(3px) translateX(4px);
   opacity: 1;
-  animation: floaty 1s ease-in-out infinite, font-color 2s ease-in-out infinite;
+  animation: floaty 1s ease-in-out infinite, font-color 1s ease-in-out infinite;
 }
