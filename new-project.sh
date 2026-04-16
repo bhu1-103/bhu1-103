@@ -1,14 +1,28 @@
 #!/usr/bin/zsh
 
+#fallback manager
+set -e
+trap 'echo "Error Occured. Restoring projects.html"; mv projects.html.bak projects.html' ERR
 cp ./projects.html projects.html.bak
+echo "Backup Created"
 
+#inputs
 echo -n "Enter Project Name: "
-read ProjectName
-ProjectNameUS=${ProjectName// /_}
+read ProjectNameUnsafe
+ProjectNameUSUnsafe=$(echo "$ProjectNameUnsafe" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/_/g' | sed 's/_\+/_/g' | sed 's/^_//;s/_$//')
 
 echo -n "Enter Project Summary: "
-read ProjectSummary
+read ProjectSummaryUnsafe
 
+#avoid errors with "\", "|", "&", etc
+ProjectName="$ProjectNameUnsafe"
+ProjectNameUS="$ProjectNameUSUnsafe"
+
+SafeName=$(printf '%s\n' "$ProjectNameUnsafe" | sed 's/[&/\\]/\\&/g')
+SafeNameUS=$(printf '%s\n' "$ProjectNameUSUnsafe" | sed 's/[&/\\]/\\&/g')
+SafeSummary=$(printf '%s\n' "$ProjectSummaryUnsafe" | sed 's/[&/\\]/\\&/g')
+
+#check if project already exists
 if [[ -e "projects/$ProjectNameUS" ]]; then
   echo -e "Project already exists\nExiting"
   exit 1
@@ -18,10 +32,11 @@ else
   echo "Created Project Files"
 fi
 
+#numbering
 i=$(find "projects/$ProjectNameUS" -maxdepth 1 -type f -regex '.*/[0-9]+\..*' | wc -l)
 
 read "a?Add images? (y/n): "
-while [[ $a == [yY] ]]; do
+while [[ -z "$a" || $a == [yY] ]]; do
   ranger --choosefile=/tmp/ranger ~/Pictures/screenshots
   img_file=$(cat /tmp/ranger 2>/dev/null)
   [[ -z "$img_file" ]] && continue
@@ -35,6 +50,7 @@ while [[ $a == [yY] ]]; do
   read "a?Add more images? (y/n): "
 done
 
+#adding project to projects.html
 last_project=$(grep -n project-header projects.html | tail -n 1 | awk -F ":" '{print $1}')
 current_project=$(( last_project + 8 ))
 
@@ -47,9 +63,12 @@ NR == line { print; print content; next }
 
 echo "Referenced project to projects.html"
 
-sed -i "s|--PROJECTNAMEHERE--|$ProjectNameUS|g" ./projects.html
-sed -i "s|--PROJECTNAMEHERESPACES--|$ProjectName|g" ./projects.html
-sed -i "s|--PROJECTQUICKSUMMARYHERE--|$ProjectSummary|g" ./projects.html
-sed -i "s|--PROJECTNAMEHERE--|$ProjectNameUS|g" ./projects/$ProjectNameUS/index.html
-sed -i "s|--PROJECTNAMEHERESPACES--|$ProjectName|g" ./projects/$ProjectNameUS/index.html
-sed -i "s|--PROJECTQUICKSUMMARYHERE--|$ProjectSummary|g" ./projects/$ProjectNameUS/index.html
+#replace template temporary variable names
+sed -i "s|--PROJECTNAMEHERE--|$SafeNameUS|g" ./projects.html
+sed -i "s|--PROJECTNAMEHERESPACES--|$SafeName|g" ./projects.html
+sed -i "s|--PROJECTQUICKSUMMARYHERE--|$SafeSummary|g" ./projects.html
+sed -i "s|--PROJECTNAMEHERE--|$SafeNameUS|g" ./projects/$ProjectNameUS/index.html
+sed -i "s|--PROJECTNAMEHERESPACES--|$SafeName|g" ./projects/$ProjectNameUS/index.html
+sed -i "s|--PROJECTQUICKSUMMARYHERE--|$SafeSummary|g" ./projects/$ProjectNameUS/index.html
+
+echo "Added project files successfully!!"
