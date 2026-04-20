@@ -366,6 +366,7 @@ h2:before {
   margin-right: 8px;
   opacity: 0.75;
   transform: translateY(-4px);
+  flex-shrink: 0;
 }
 
 h2:after {
@@ -377,9 +378,13 @@ h2:after {
   margin-left: 8px;
   opacity: 0.75;
   transform: translateY(4px);
+  flex-shrink: 0;
 }
 
 .container h2 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   font-size: 1.1rem;
   padding: 15px;
   border-left: 2px solid transparent;
