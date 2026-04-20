@@ -13,15 +13,6 @@ html {
   font-size: 18px;
 }
 
-@media (max-width: 600px) {
-  .project-preview {
-    flex-direction: column;
-  }
-  .project-preview img {
-    max-width: 100%;
-  }
-}
-
 @font-face {
   font-family: 'Bricolage';
   src: url('../fonts/Bricolage_Grotesque/BricolageGrotesque-Regular.ttf');
@@ -83,9 +74,15 @@ h1, h2 {
 }
 
 .container {
-  max-width: 70%;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 20px 100px;
+  padding: 20px;
+}
+
+@media (min-width: 601px) {
+  .container {
+    padding: 20px 100px;
+  }
 }
 
 .avatar-homepage {
@@ -126,8 +123,8 @@ h1, h2 {
 
 .project-preview {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  margin-left: 20px;
   gap: 20px;
   align-items: center;
   max-height: 0;
@@ -139,23 +136,27 @@ h1, h2 {
 }
 
 .project-preview p {
-  flex: 2;
+  flex: 1;
   margin: 0;
-  padding-left: 20px;
   min-width: 0;
+  padding: 0 12px;
 }
 
 .project-preview img {
-  flex: 1;
-  width: 100%;
+  flex: 0 0 350px;
+  width: 350px;
   height: auto;
-  max-width: 400px;
+  max-width: 350px;
   object-fit: contain;
-  padding-right: 10px;
+  padding: 0 12px;
+}
+
+.project-text {
+  text-indent: 1em;
 }
 
 .project.active .project-preview {
-  max-height: 600px;
+  max-height: 2000px;
   opacity: 1;
   margin-top: 10px;
 }
@@ -168,7 +169,7 @@ h1, h2 {
 p {
   color: var(--muted);
   line-height: 1.75;
-  max-width: 520px;
+  max-width: none;
   margin-bottom: 16px;
   padding-left: 8px;
   padding-right: 8px;
@@ -233,6 +234,7 @@ p {
   text-shadow: 
     1px 1px 2px var(--counter),
     -1px -1px 2px var(--accent);
+  padding-left: 12px;
 }
 
 .main-heading-homepage:before {
@@ -241,6 +243,7 @@ p {
   white-space: pre;
   color: var(--accent);
   display: block;
+  padding-left: 8px;
 }
 .main-heading:before {
   content: "\\（・。・）/\A";
@@ -285,12 +288,13 @@ p {
 .projects-btn {
   position: relative;
   display: inline-block;
+  text-indent: 0px;
   padding: 8px 14px;
   margin-left: 20px;
   color: var(--text);
   margin-top: 12px;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 800;
   border: 1px solid var(--accent);
   border-radius: 6px;
   overflow: hidden;
@@ -418,14 +422,48 @@ h2:after {
 
 .quick-summary {
   font-size: 1.2rem;
+  width: 100%;
 }
 
-.quick-summary:before {
+.quick-summary::before {
   color: var(--accent);
-  font-size: 2rem;
+  font-size: 1.5rem;
   content: "Summary: "
 }
 
 .project-details p:first-of-type {
   text-indent: 3em;
 }
+
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+  .project-preview {
+    flex-direction: column;
+    margin-left: 0;
+  }
+  .project-preview p {
+    width: 95%;
+  }
+  .project-preview img {
+    flex: none;
+    width: 90%;
+    max-width: none;
+    height: auto;
+  }
+  html {
+    font-size: 16px;
+  }
+  p {
+    max-width: 100%;
+  }
+  .projects-btn {
+  }
+  .main-heading,
+  .main-heading-homepage {
+    padding-left: 0;
+  }
+}
+
+
