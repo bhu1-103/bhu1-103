@@ -469,6 +469,12 @@ h2:after {
   .main-heading-homepage {
     padding-left: 0;
   }
+  .links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
 }
 
 
