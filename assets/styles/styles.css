@@ -176,7 +176,13 @@ p {
 
 .project-preview .projects-btn {
   border-color: var(--accent);
-  animation: font-color-btn 3s ease-in-out infinite;
+  color: var(--counter);
+  transition: color 0.4s cubic-bezier(0.48, -0.6, 0.32, 1.6);
+}
+
+.project-preview .projects-btn:hover {
+  border-color: var(--accent);
+  color: var(--balance);
 }
 
 .links {
@@ -396,11 +402,6 @@ h2:after {
   0%,100% {color: var(--accent);}
   25% {color: var(--balance);}
   50% {color: var(--counter);}
-}
-
-@keyframes font-color-btn {
-  0%,100% {color: var(--counter);}
-  50% {color: var(--balance);}
 }
 
 .container h2:hover:before {
