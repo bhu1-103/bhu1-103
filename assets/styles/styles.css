@@ -415,3 +415,17 @@ h2:after {
   opacity: 1;
   animation: floaty 1s ease-in-out infinite, font-color-h2 1s ease-in-out infinite;
 }
+
+.quick-summary {
+  font-size: 1.2rem;
+}
+
+.quick-summary:before {
+  color: var(--accent);
+  font-size: 2rem;
+  content: "Summary: "
+}
+
+.project-details p:first-of-type {
+  text-indent: 3em;
+}
