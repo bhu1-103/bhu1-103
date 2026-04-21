@@ -110,7 +110,7 @@ h1, h2 {
   border-color: var(--balance);
 }
 
-.back-btn::before {
+.back-btn:before {
   background: var(--balance);
 }
 
@@ -301,7 +301,7 @@ p {
   z-index: 0;
 }
 
-.projects-btn::before {
+.projects-btn:before {
   content: "";
   position: absolute;
   left: 0;
@@ -315,7 +315,7 @@ p {
   border-top-right-radius: 40% 20%;
 }
 
-.projects-btn:hover::before {
+.projects-btn:hover:before {
   height: 100%;
   animation: wave 1s linear infinite;
 }
@@ -430,7 +430,7 @@ h2:after {
   width: 100%;
 }
 
-.quick-summary::before {
+.quick-summary:before {
   color: var(--accent);
   font-size: 1.5rem;
   content: "Summary: "
@@ -438,6 +438,53 @@ h2:after {
 
 .project-details p:first-of-type {
   text-indent: 3em;
+}
+
+.haiku {
+  font-family: 'DynaPuff', system-ui, sans-serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--text);
+  line-height: 1.6;
+  text-align: left;
+  padding-left: 20px;
+  position: relative;
+  border-left: 3px solid var(--accent);
+  margin: 40px 0;
+  max-width: 400px;
+}
+
+.haiku:before {
+  content: "⸜(｡˃ ᵕ ˂)⸝♡ 「";
+  white-space: pre;
+  color: var(--accent);
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.haiku:after {
+  content: "」";
+  color: var(--accent);
+  font-size: 1.5rem;
+}
+
+.mii-chat {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 40px 0;
+}
+.mii-chat .avatar {
+  width: 60px;
+  margin-bottom: 0;
+}
+
+.chat-bubble {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px 20px;
+  border-radius: 12px;
+  border-left: 4px solid var(--accent);
 }
 
 @media (max-width: 600px) {
