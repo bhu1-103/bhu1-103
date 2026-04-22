@@ -3,7 +3,6 @@ const buttons = document.querySelectorAll('.projects-btn');
 
 window.addEventListener('load', () => {
   if (!overlay) return;
-  overlay.style.height = '100%';
   overlay.getBoundingClientRect();
   overlay.classList.add('drain');
   overlay.addEventListener('animationend', () => {
