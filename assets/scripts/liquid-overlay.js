@@ -1,14 +1,16 @@
 const overlay = document.querySelector('.liquid-overlay');
 const buttons = document.querySelectorAll('.projects-btn');
 
-window.addEventListener('load', () => {
+window.addEventListener('pageshow', () => {
   if (!overlay) return;
-  overlay.getBoundingClientRect();
+  overlay.style.display = 'block';
+  overlay.classList.remove('fill');
   overlay.classList.add('drain');
+  
   overlay.addEventListener('animationend', () => {
     overlay.style.display = 'none';
   }, { once: true});
-})
+});
 
 function handleTransition(e,targetUrl) {
   e.preventDefault();
