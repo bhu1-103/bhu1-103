@@ -611,5 +611,7 @@ h2:after {
       1px 1px 6px var(--accent),
       -1px -1px 6px var(--counter);
   }
-
+  .container h2:hover {
+    transform: scale(1.075);
+  }
 }
