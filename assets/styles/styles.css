@@ -11,6 +11,7 @@
 
 html {
   font-size: 18px;
+  scroll-behavior: smooth;
 }
 
 @font-face {
@@ -206,6 +207,22 @@ p {
     1px 1px 6px var(--accent),
     -1px -1px 6px var(--counter);
     animation: glowyBorder 2s ease-in-out infinite;
+  cursor: var(--cursor-click);
+}
+
+.links2 {
+  text-decoration: none;
+  color: var(--balance);
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease-in-out, text-shadow 0.2s ease-in-out;
+}
+
+.links2:hover {
+  color: #fff;
+  text-shadow: 
+    1px 1px 6px var(--accent),
+    -1px -1px 6px var(--counter);
   cursor: var(--cursor-click);
 }
 
@@ -428,17 +445,17 @@ h2:after {
 }
 
 .quick-summary {
-  font-size: 1.2rem;
+  font-size: 1rem;
   width: 70%;
 }
 
 .quick-summary:before {
   color: var(--accent);
-  font-size: 1.5rem;
-  content: "Summary: "
+  font-size: 1.2rem;
+  content: "// overview // "
 }
 
-.project-details p:first-of-type {
+.project-details > p:first-of-type {
   text-indent: 3em;
 }
 
@@ -531,6 +548,7 @@ h2:after {
   }
   html {
     font-size: 16px;
+    scroll-behavior: smooth;
   }
   p {
     max-width: 100%;
