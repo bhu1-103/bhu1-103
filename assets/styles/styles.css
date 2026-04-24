@@ -552,6 +552,7 @@ code {
   font-size: 0.95em;
   border: 1px solid #333;
   text-shadow: 1px 1px 6px var(--bg);
+  overflow-wrap: break-word;
 }
 
 ul li::marker {
