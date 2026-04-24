@@ -52,7 +52,7 @@
         <li><a class="links2" href="https://github.com/obsproject/obs-studio">OBS Studio</a> → recording the game video</li>
         <li><a class="links2" href="https://ffmpeg.org">ffmpeg</a> → splitting the video into individual image samples</li>
         <li><a class="links2" href="https://app.roboflow.com/">roboflow</a> → labeling the images</li>
-      </ul>:were
+      </ul>
       This is how a labeled image in <code>roboflow</code> looks like. On the left, there are the classes and on the right are the bounding boxes I put on all the images. In total, I <code>labelled 170 images</code>, which is very few, but I wanted to experiment whether such a small number would be enough given the game's sprites are exactly the same throughout the whole game and there is zero post-processing.
       <img class="doc" src="./7.png">
     </section>
@@ -73,7 +73,7 @@
           <img class="doc" src="./3.png"></li>
         <li>At epoch 36, the model finally scored above <code>0.85 mAP50</code>. The <code>Recall</code> is also pretty good at around the <code>~0.85</code> range. We can see the model has essentially finished learning and reached saturation. The epochs after this give minimal improvement if any.
           <img class="doc" src="./4.png"></li>
-        <li>Since the training was happening so quickly on my GPU, I decided to let it run and watch how it performs by the end of 60 epochs. It reached the <code>~0.9 mAP50</code> scores with <code>~0.9 Recall</code> which is pretty good. It also produced a good <code>mAP50-95</code> score of <code>~0.74</code> by the last epoch which is really good for my use case as the game in question uses simple sprites and the YOLO model's capture rate beng <code>16 frames per second</code>, the model would recognize objects at least once in 2 or 3 frames in the worst case scenario.
+        <li>Since the training was happening so quickly on my GPU, I decided to let it run and watch how it performs by the end of 60 epochs. It reached the <code>~0.9 mAP50</code> scores with <code>~0.9 Recall</code> which is pretty good. It also produced a good <code>mAP50-95</code> score of <code>~0.74</code> by the last epoch which is really good for my use case as the game in question uses simple sprites and the YOLO model's capture rate being <code>16 frames per second</code>, the model would recognize objects at least once in 2 or 3 frames in the worst case scenario.
           <img class="doc" src="./5.png"></li>
         <li>I initially thought class imbalance would be a problem as there are <code>Lane-Markings</code> in every single image of the dataset, that is why some classes like <code>Obstacle (0.497), Fuel (0.663) and Enemy-Blue-Bad (0.753)</code> have relatively bad <code>mAP50</code> scores. But the model works fine overall.<br>
           A better solution instead of depending on the "it might get detected at least once in 2 frames" hope, I could add more images of the classes that have very less labels to balance the dataset and train the model again. That will defnitely get the model to near perfect results, given the simiplicity of the classes.
@@ -164,7 +164,7 @@
       <h3>Applying Logic to make the agent smart</h3>
       <ul>
         <li>From the metadata, I found out the positions of the player, enemies, obstacles, lane markings, etc and designed a basic algorithm where the model suggests directions to move as depicted in the image below. It may not be the most advanced system but it is pretty good for a use case like this.
-        <<img class="doc" src="./15.png"></li>
+        <img class="doc" src="./15.png"></li>
         <li>I have factored in a few rules that must be there no matter how much development this project gets:</li>
         <ol>
           <li>Player car is red. One of the enemy cars is red as well, and the model might think the enemy car is the player car or vice versa. So I made this rule such that: <code>if red_car[y_pos] > 0.75: player_car[pos]=red_car[pos]</code> which means if the car is in the bottom quarter, consider that as player car.</li>
