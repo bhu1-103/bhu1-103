@@ -330,6 +330,7 @@ p {
   border-radius: 6px;
   overflow: hidden;
   z-index: 0;
+  flex-shrink: 0;
 }
 
 .projects-btn:before {
