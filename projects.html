@@ -19,13 +19,13 @@
     </div>
 
     <div class="project">
-      <div class="project-header"><h2>Sony IMX500 + Raspberry Pi Zero 2W</h2></div>
+      <div class="project-header"><h2>Edge Vision Pipeline: IMX500 → Metadata → Real-Time Control</h2></div>
       <div class="project-preview">
         <div class="project-text">
-          <p>Did so much research on how the IMX500 Raspberry Pi AI camera works and this repo shows all my findings. Pretty Interesting in my opinion. With this project I came to learn a new thing, "GPUs are not always the best for everything" even though GPUs are like the most powerful things we have currently. DSPs are the new technology that will change the way we live.</p>
-          <a href="./projects/IMX500/index.html" class="projects-btn">Read More</a>
+          <p>I’ve revisited this idea multiple times (ずっとずっと) since my university hackathons, where I initially relied on basic OpenCV techniques like color masking. Those approaches felt limited, so I rebuilt the system using the Sony IMX500, running a custom fine-tuned YOLO11 model directly on the sensor. The system operates on metadata only, sending results to a Raspberry Pi Zero 2 W to drive real-time control via USB HID, forming a low-latency vision → action loop without transferring image data.</p>
+          <a href="./projects/edge_vision_pipeline_imx500_metadata_real_time_control/index.html" class="projects-btn">Read More</a>
         </div>
-        <img src="./projects/IMX500/1.png" alt="IMX500">
+        <img src="./projects/edge_vision_pipeline_imx500_metadata_real_time_control/1.png" alt="Edge Vision Pipeline: IMX500 → Metadata → Real-Time Control">
       </div>
     </div>
 
@@ -70,17 +70,6 @@
           <a href="./projects/ICCSIT-2025/index.html" class="projects-btn">Read More</a>
         </div>
         <img src="./projects/ICCSIT-2025/1.png" alt="ICCSIT 2025 img">
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="project-header"><h2>Edge Vision Pipeline: IMX500 → Metadata → Real-Time Control</h2></div>
-      <div class="project-preview">
-        <div class="project-text">
-          <p>I’ve revisited this idea multiple times (ずっとずっと) since my university hackathons, where I initially relied on basic OpenCV techniques like color masking. Those approaches felt limited, so I rebuilt the system using the Sony IMX500, running a custom fine-tuned YOLO11 model directly on the sensor. The system operates on metadata only, sending results to a Raspberry Pi Zero 2 W to drive real-time control via USB HID, forming a low-latency vision → action loop without transferring image data.</p>
-          <a href="./projects/edge_vision_pipeline_imx500_metadata_real_time_control/index.html" class="projects-btn">Read More</a>
-        </div>
-        <img src="./projects/edge_vision_pipeline_imx500_metadata_real_time_control/1.png" alt="Edge Vision Pipeline: IMX500 → Metadata → Real-Time Control">
       </div>
     </div>
 
