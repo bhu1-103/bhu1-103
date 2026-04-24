@@ -28,20 +28,22 @@
     <div class="mii-chat"><img src="../../assets/images/avatar/mii-red-bg.png" class="chat-avatar" alt="Mii Chat"><div class="chat-bubble"><p>15 years later...<br>I'm still trying to beat the game ^_^"</p></div></div>
     <img class="doc" src="./1.png" alt="Edge Vision Pipeline: IMX500 → Metadata → Real-Time Control" class="project-image">
     <br>
-    <p class="quick-summary">I’ve revisited this idea multiple times (ずっとずっと) since my university hackathons, where I initially relied on basic OpenCV techniques like color masking. Those approaches felt limited, so I rebuilt the system using the Sony IMX500, running a custom fine-tuned YOLO11 model directly on the sensor. The system operates on metadata only, sending results to a Raspberry Pi Zero 2 W to drive real-time control via USB HID, forming a low-latency vision → action loop without transferring image data.</p>
+    <p class="quick-summary">I’ve revisited this idea multiple times (ずっとずっと) since my university hackathons, where I initially relied on basic OpenCV techniques like color masking. Those approaches felt limited, so I rebuilt the system using the Sony IMX500, running a custom fine-tuned YOLO11 model directly on the sensor. The system operates on metadata only, sending results to a Raspberry Pi (I'll refer to it as RPi from now on) Zero 2 W to drive real-time control via USB HID, forming a low-latency vision → action loop without transferring image data.</p>
     <div class="project-details">
-      <p>There are various model to choose from. I chose YOLO11 mainly because it has a much more stable and standard way of fine tuning models for the IMX500 sensor specifically. I have also tested various other models as seen in <a class="links2" href="https://github.com/bhu1-103/imx-500/blob/main/README.md">my GitHub repo</a>, but they have less accuracy scores when compared to yolo11.</p>
+      <p>There are various model to choose from. I chose YOLO11 mainly because it has a much more stable and standard way of fine tuning models for the IMX500 sensor specifically. I have also tested various other models as seen in <a class="links2" href="https://github.com/bhu1-103/imx-500/blob/main/README.md">my GitHub repo</a>, but they have less accuracy scores when compared to yolo11.<br>
+      The main outcome of this project is to use a <code>Raspberry Pi</code> and a <code>DSP enabled Camera</code> to play the video game → <code>Road Fighter</code>.
+      </p>
       <p>Table of contents →</p>
       <ol>
-        <li><a class="links2" href="#section01">Custom Dataset and Labeling</a></li>
-        <li><a class="links2" href="#section02">Fine-Tuning on custom dataset</a></li>
-        <li><a class="links2" href="#section03">Exporting model to IMX500</a></li>
-        <li><a class="links2" href="#section04">Testing model on RPi Zero 2 W</a></li>
-        <li><a class="links2" href="#section05">Switching to metadata-only</a></li>
-        <li><a class="links2" href="#section06">Applying Logic to make the agent smarter</a></li>
-        <li><a class="links2" href="#section07">Finishing the loop: Button Input</a></li>
+        <li>Done--- <a class="links2" href="#section01">Custom Dataset and Labeling</a></li>
+        <li>Done--- <a class="links2" href="#section02">Fine-Tuning on custom dataset</a></li>
+        <li>Done--- <a class="links2" href="#section03">Exporting model to IMX500</a></li>
+        <li>Done--- <a class="links2" href="#section04">Testing model on RPi Zero 2 W</a></li>
+        <li>Done--- <a class="links2" href="#section05">Applying Logic to make the agent smarter</a></li>
+        <li>Pending <a class="links2" href="#section06">Finishing the loop: Button Input</a></li>
       </ol>
     <br>
+
     <section id="section01">
       <h3>Custom Dataset and Labeling</h3>
       <p>The following tools were used to generate and label the dataset.</p>
@@ -50,10 +52,14 @@
         <li><a class="links2" href="https://github.com/obsproject/obs-studio">OBS Studio</a> → recording the game video</li>
         <li><a class="links2" href="https://ffmpeg.org">ffmpeg</a> → splitting the video into individual image samples</li>
         <li><a class="links2" href="https://app.roboflow.com/">roboflow</a> → labeling the images</li>
-      </ul>
-      This is how a labeled image in <code>roboflow</code> looks like. On the left, there are the classes and on the right are the bounding boxes I put on all the images. In total, I labelled 170 images, which is very few, but I wanted to experiment whether such a small number would be enough given the game's sprites are exatcly the same throughout the whole game and there is zero post-processing.
+      </ul>:were
+      This is how a labeled image in <code>roboflow</code> looks like. On the left, there are the classes and on the right are the bounding boxes I put on all the images. In total, I <code>labelled 170 images</code>, which is very few, but I wanted to experiment whether such a small number would be enough given the game's sprites are exactly the same throughout the whole game and there is zero post-processing.
       <img class="doc" src="./7.png">
     </section>
+
+    </div>
+    <div class="mii-chat"><img src="../../assets/images/avatar/mii-red-bg.png" class="chat-avatar" alt="Mii Chat"><div class="chat-bubble"><p>I knew the "170" was a bad idea...<br>but I didn't feel like labeling anymore</p></div></div>
+    <div class="project-details">
 
     <section id="section02">
       <h3>Fine-Tuning on custom dataset</h3>
@@ -67,7 +73,7 @@
           <img class="doc" src="./3.png"></li>
         <li>At epoch 36, the model finally scored above <code>0.85 mAP50</code>. The <code>Recall</code> is also pretty good at around the <code>~0.85</code> range. We can see the model has essentially finished learning and reached saturation. The epochs after this give minimal improvement if any.
           <img class="doc" src="./4.png"></li>
-        <li>Since the training was happening so quickly on my GPU, I decided to let it run and watch how it performs by the end of 60 epochs. It reached the <code>~0.9 mAP50</code> scores with <code>~0.9 Recall</code> which is pretty good. It also produced a good <code>mAP50-95</code> score of <code>~0.74</code> by the last epoch which is really good for my use case as the game in question uses simple sprites and out of <code>16 frames per second</code>, the model would recognize objects at least once in 2 or 3 frames in the worst case scenario.
+        <li>Since the training was happening so quickly on my GPU, I decided to let it run and watch how it performs by the end of 60 epochs. It reached the <code>~0.9 mAP50</code> scores with <code>~0.9 Recall</code> which is pretty good. It also produced a good <code>mAP50-95</code> score of <code>~0.74</code> by the last epoch which is really good for my use case as the game in question uses simple sprites and the YOLO model's capture rate beng <code>16 frames per second</code>, the model would recognize objects at least once in 2 or 3 frames in the worst case scenario.
           <img class="doc" src="./5.png"></li>
         <li>I initially thought class imbalance would be a problem as there are <code>Lane-Markings</code> in every single image of the dataset, that is why some classes like <code>Obstacle (0.497), Fuel (0.663) and Enemy-Blue-Bad (0.753)</code> have relatively bad <code>mAP50</code> scores. But the model works fine overall.<br>
           A better solution instead of depending on the "it might get detected at least once in 2 frames" hope, I could add more images of the classes that have very less labels to balance the dataset and train the model again. That will defnitely get the model to near perfect results, given the simiplicity of the classes.
@@ -75,59 +81,108 @@
       </ul>
     </section>
 
+    </div>
+    <div class="mii-chat"><img src="../../assets/images/avatar/mii-red-bg.png" class="chat-avatar" alt="Mii Chat"><div class="chat-bubble"><p>I do not trust the results yet.<br>Oh wait, we still need to export the model?<br>(¬_¬") How boring...</p></div></div>
+    <div class="project-details">
+
     <section id="section03">
       <h3>Exporting model to IMX500</h3>
       <ul>
-        <li><a class="links2" href="">ok</a> → </li>
-        <li><a class="links2" href="">ok</a> → </li>
-        <li><a class="links2" href="">ok</a> → </li>
+        <li>I have trained the model on my custom dataset. Now, all that remains is to make it usable in the IMX500 camera. The official <a class="links2" href="https://docs.ultralytics.com/integrations/sony-imx500/#usage-examples">ultralytics documentation</a> shows us how to convert the now fine-tuned model to the IMX500 format.</li>
+        <li><code>yolo export model=/home/bhu1/dev/git/RasPi_YOLO/runs/detect/train2/weights/best.pt format=imx data=data.yaml</code><br>
+          As seen in the code, the <code>best.pt</code> weights are used again. But, this time, they are used to <code>export</code> the model and the format used is <code>format=imx</code>.
+          <img class="doc" src="./8.png">
+        </li>
+        <li>I just transfered the file to the RPi and this part was done. The 3 most widely used image resolutions are: <code>320x320</code>, <code>416x416</code> and <code>640x640</code>.</li>
+        <li><code>640x640</code> is an excellent choice if we need accuracy, but for this project, I need to focus on <code>latency</code> as well. Larger <code>tensor</code> image means more inference time, I might lose lots of <code>milliseconds</code> just to identify a simple sprite on a computer screen.</li>
+        <li>In that case <code>320x320</code> must be the best choice, but it's a tradeoff for model quality and results and since my dataset was already imbalanced, I decided to go with the middleground → <code>416x416</code>.</li>
+        <li>Once the model exported, I navigated to the output directory to find the <code>packerOut.zip</code>.
+          <img class="doc" src="./9.png">
+        </li>
       </ul>
     </section>
 
     <section id="section04">
       <h3>Testing model on RPi Zero 2 W</h3>
       <ul>
-        <li>After the zip file was extracted, I ran the train script from the official <a class="links2" href="https://docs.ultralytics.com/integrations/sony-imx500/#usage-examples">ultralytics documentation</a>. This code produces a <code>packerOut.zip</code> file.</li>
-        <li>The packer.out file is then moved to the RPi. In my case, I hosted a quick web server using <code>python -m http.server</code> and downloaded it on my raspberry pi.</li>
+        <li>I moved the packer.out file the RPi. In my case, I hosted a quick web server using <code>python -m http.server</code> and downloaded it on my raspberry pi.</li>
         <li>Folder structure on RPi<br>
           <code>yolo11n_imx_model</code><br>
-          <code>├── dnnParams.xml</code><br>
-          <code>├── labels.txt</code> → Has to be manually created (<a class="links2" href="https://github.com/bhu1-103/imx-500/blob/main/models/game-agent-01/yolo11n_imx_model/labels.txt">example</a>), other files will be generated automatically.<br>
-          <code>├── packerOut.zip</code> → Has to be placed in the right directory.<br>
-          <code>├── model_imx.on</code><br>
-          <code>├── model_imx_MemoryReport.json</code><br>
-          <code>└── model_imx.pbtxt</code></code><br></li>
-        <li><a class="links2" href="">ok</a> → </li>
-        <li><a class="links2" href="">ok</a> → </li>
-        <li><a class="links2" href="">ok</a> → </li>
+          ├── <code>dnnParams.xml</code><br>
+          ├── <code>labels.txt</code> → Has to be manually created (<a class="links2" href="https://github.com/bhu1-103/imx-500/blob/main/models/game-agent-01/yolo11n_imx_model/labels.txt">example</a>), other files will be generated automatically.<br>
+          ├── <code>packerOut.zip</code> → Has to be placed in the right directory.<br>
+          ├── <code>model_imx.on</code><br>
+          ├── <code>model_imx_MemoryReport.json</code><br>
+          └── <code>model_imx.pbtxt</code><br></li>
+        <li>After the basic setup was done, I headed back to the official <a class="links2" href="https://docs.ultralytics.com/integrations/sony-imx500/#object-detection_1">ultralytics documentation</a> to get the code to run the model on the RPi and ran it on my RPi immediately. That's when I noticed this...
+          <img class="doc" src="./10.png"></li>
+        
+        <li><code>Large difference between libcamera request rate (33.4 RPS) and detection rate (5.3 DPS).</code><br>
+          The code itself ran, the model could draw bounding boxes and everything, but it was horribly slow.
+          I Then tried to use a <code>lower FPS rate</code>, but that wouldn't work either.
+          Since I was using VNC, I had a hard time understanding that the problem was in the RPi itself.
+        </li>
+        <li>The RPi I was using was a Zero 2 W, which has 512 mb ram and a quad core Arm Cortex A53 and that was the reason YOLO was struggling.</li>
+        <li>One might ask, <code>"If the processing is happening in the camera, why does the RPi limit YOLO here?"</code><br>
+          The answer is a bit... weird... and funny...</li>
+        <li>The RPi is <code>not running the YOLO model</code>, the RPi is <code>struggling to display the camera view</code> and show the bounding boxes at the same time.</li>
+        </ul>
+    </div>
+    <div class="mii-chat"><img src="../../assets/images/avatar/mii-red-bg.png" class="chat-avatar" alt="Mii Chat"><div class="chat-bubble"><p>おかしいな。。。<br>あー、もう！<br>わからないよ</p></div></div>
+    <div class="project-details">
+      <ul>
+        <li>Therefore, I kept running it at <code>1 FPS target</code> knowing I could use a more powerful RPi later when I buy one and since 1 FPS performs well without crashing the RPi.
+          <img class="doc" src="./11.png"></li>
+        <li>It wasn't perfect. Honestly, it was bad... But it worked... The model was able to identify something at the very least</li>
+        <li>But across the whole internet I was not able to find any information on how to <code>stream metadata-only</code>. That's when I thought of checking the <a class="links2" href="https://github.com/raspberrypi/picamera2/tree/main/examples/imx500">picamera2 github repository</a> but I couldn't find anything there.</li>
+        </ul>
+    </div>
+    <div class="mii-chat"><img src="../../assets/images/avatar/mii-red-bg.png" class="chat-avatar" alt="Mii Chat"><div class="chat-bubble"><p>Oh?<br>"headless"?<br>FOUND IT!!</p></div></div>
+    <div class="project-details">
+      <ul>
+        <li>I then ran the help command for <code>AiCamera</code> from the <code>modlib</code> module: <code>python -c "from modlib.devices import AiCamera; help(AiCamera)".</code>
+          <img class="doc" src="./12.png"></li>
+        <li><code>headless</code> is the component I was finding all this time. After adding the <code>headless=True</code> and modifying the code a little, I was able to see the detections in the terminal. The official <a class="links2" href="https://docs.ultralytics.com/integrations/sony-imx500/#usage-examples">ultralytics documentation</a> shows that the max achievable framerate is <code>16</code>, so I hardcoded 16 and modified the code to measure latency and found this.
+          <img class="doc" src="./13.png"></li>
+        <li><code>Latency: 62ms</code>. But in the official <a class="links2" href="https://docs.ultralytics.com/integrations/sony-imx500/#benchmarks">ultralytics documentation</a> showed that the optimal <code>inference time = 58.85 ms</code>. Therefore I removed the hardcoded 16 fps limit and these were my findings.
+          <img class="doc" src="./14.png"></li>
+        <li>To my surprise, the <code>end-to-end latency = 35ms</code> on average. Yes, this is the round trip latency.<br>
+          It includes ⇣
+          <ol>
+            <li>├── <code>YOLO Inference</code> → Camera runs YOLO on the DSP and identifies the objects</li>
+            <li>├── <code>Camera sends the information to the Pi</code></li>
+            <li>├── <code>RPi does post processing on the data</code> → This is where the logic lives</li>
+            <li>└── <code>RPi prints it to the terminal</code></li>
+          </ol>
+        </li>
+        <li>I was able to achieve such a good <code>end-to-end latency: 35ms</code> thanks to <br>
+          the sacrifice made earlier → <code>416x416 tensor size.</code></li>
+        <li>Code can be checked <a class="links2" href="https://github.com/bhu1-103/imx-500/blob/main/models/game-agent-01/README.md">here.</a></li>
       </ul>
     </section>
-
     <section id="section05">
-      <h3>Exporting model to IMX500</h3>
+      <h3>Applying Logic to make the agent smart</h3>
       <ul>
-        <li><a class="links2" href="">ok</a> → </li>
-        <li><a class="links2" href="">ok</a> → </li>
-        <li><a class="links2" href="">ok</a> → </li>
+        <li>From the metadata, I found out the positions of the player, enemies, obstacles, lane markings, etc and designed a basic algorithm where the model suggests directions to move as depicted in the image below. It may not be the most advanced system but it is pretty good for a use case like this.
+        <<img class="doc" src="./15.png"></li>
+        <li>I have factored in a few rules that must be there no matter how much development this project gets:</li>
+        <ol>
+          <li>Player car is red. One of the enemy cars is red as well, and the model might think the enemy car is the player car or vice versa. So I made this rule such that: <code>if red_car[y_pos] > 0.75: player_car[pos]=red_car[pos]</code> which means if the car is in the bottom quarter, consider that as player car.</li>
+          <li>Since no model can be 100% perfect, especially a low end edge model meant for speed tasks rather than accuracy tasks I decided to average the positions to <code>reduce jitter</code>. This way, the movement of the position of any element will be smooth rather than jumping around from corner to corner.</li>
+          <li>Must make the system check the jitter of movement, if it is over a certain limit, compared to previous samples, ignore the current sample completely.</li>
+          <li>Combine all enemy classes into 1 common group called enemies to reduce complexity for now. Each type of enemy has their own capability, but the current task must be to stabilize the movement.</li>
+        </ol>
       </ul>
     </section>
 
     <section id="section06">
-      <h3>Exporting model to IMX500</h3>
-      <ul>
-        <li><a class="links2" href="">ok</a> → </li>
-        <li><a class="links2" href="">ok</a> → </li>
-        <li><a class="links2" href="">ok</a> → </li>
-      </ul>
-    </section>
-
-    <section id="section07">
-      <h3>Exporting model to IMX500</h3>
-      <ul>
-        <li><a class="links2" href="">ok</a> → </li>
-        <li><a class="links2" href="">ok</a> → </li>
-        <li><a class="links2" href="">ok</a> → </li>
-      </ul>
+      <h3>Finishing the loop: Button Input</h3>
+       There are 2 methods to do this. But I will only be following one of the methods:
+       <ol>
+         <li><code>2x Servo Motors:</code> using servo motors to press the physical keys on a keyboard or a controller.</li>
+         <li><code>USB Gadget Mode:</code> using RPi with USB Gadget Mode where it can pretend to be a USB HID device and send inputs directly via usb cable.</li>
+       </ol>
+       I will personally go with the USB Gadget Mode idea.
     </section>
 
     </div>
