@@ -25,8 +25,8 @@
         - Thomas A. Edison
       </blockquote>
     </div>
-    <div class="mii-chat"><img src="../../assets/images/avatar/mii-red-bg.png" class="chat-avatar" alt="Mii Chat"><div class="chat-bubble"><p>15 years later... ^_^"<br>I'm still trying to beat the game</p></div></div>
-    <img src="./1.png" alt="Edge Vision Pipeline: IMX500 → Metadata → Real-Time Control" class="project-image">
+    <div class="mii-chat"><img src="../../assets/images/avatar/mii-red-bg.png" class="chat-avatar" alt="Mii Chat"><div class="chat-bubble"><p>15 years later...<br>I'm still trying to beat the game ^_^"</p></div></div>
+    <img class="doc" src="./1.png" alt="Edge Vision Pipeline: IMX500 → Metadata → Real-Time Control" class="project-image">
     <br>
     <p class="quick-summary">I’ve revisited this idea multiple times (ずっとずっと) since my university hackathons, where I initially relied on basic OpenCV techniques like color masking. Those approaches felt limited, so I rebuilt the system using the Sony IMX500, running a custom fine-tuned YOLO11 model directly on the sensor. The system operates on metadata only, sending results to a Raspberry Pi Zero 2 W to drive real-time control via USB HID, forming a low-latency vision → action loop without transferring image data.</p>
     <div class="project-details">
@@ -51,10 +51,78 @@
         <li><a class="links2" href="https://ffmpeg.org">ffmpeg</a> → splitting the video into individual image samples</li>
         <li><a class="links2" href="https://app.roboflow.com/">roboflow</a> → labeling the images</li>
       </ul>
+      This is how a labeled image in <code>roboflow</code> looks like. On the left, there are the classes and on the right are the bounding boxes I put on all the images. In total, I labelled 170 images, which is very few, but I wanted to experiment whether such a small number would be enough given the game's sprites are exatcly the same throughout the whole game and there is zero post-processing.
+      <img class="doc" src="./7.png">
     </section>
 
     <section id="section02">
       <h3>Fine-Tuning on custom dataset</h3>
+      <ul>
+        <li>I selected a 70:20:10 split as shown in the image below ⇣<br>
+          <img class="doc" src="./2.png"><br></li>
+        <li>This split is required as it is a good balance to make sure the model is tested on all classes of data and doesn't miss anything or trains on less data.</li>
+        <li>Using the yolo command line tool, I trained the model on these parameters.<br>
+          <code>yolo detect train model=yolo11n.pt data=data.yaml epochs=60 imgsz=416 amp=False batch=8</code></li>
+        <li>As we can see here, the precision in the first few epochs are not very good, but improving in the right direction. Main improvement is in <code>Recall</code> due to zero post-processing filters and simple sprites in the game. There was one major spike in the <code>mAP50</code> in the 4th epoch but the model clearly got overconfident there and reverted back to 0.2s. There is very little improvement in <code>Precision</code> and a major dip in <code>Precision</code> from <code>0.698</code> to <code>0.0661</code> but we will see better results much further.
+          <img class="doc" src="./3.png"></li>
+        <li>At epoch 36, the model finally scored above <code>0.85 mAP50</code>. The <code>Recall</code> is also pretty good at around the <code>~0.85</code> range. We can see the model has essentially finished learning and reached saturation. The epochs after this give minimal improvement if any.
+          <img class="doc" src="./4.png"></li>
+        <li>Since the training was happening so quickly on my GPU, I decided to let it run and watch how it performs by the end of 60 epochs. It reached the <code>~0.9 mAP50</code> scores with <code>~0.9 Recall</code> which is pretty good. It also produced a good <code>mAP50-95</code> score of <code>~0.74</code> by the last epoch which is really good for my use case as the game in question uses simple sprites and out of <code>16 frames per second</code>, the model would recognize objects at least once in 2 or 3 frames in the worst case scenario.
+          <img class="doc" src="./5.png"></li>
+        <li>I initially thought class imbalance would be a problem as there are <code>Lane-Markings</code> in every single image of the dataset, that is why some classes like <code>Obstacle (0.497), Fuel (0.663) and Enemy-Blue-Bad (0.753)</code> have relatively bad <code>mAP50</code> scores. But the model works fine overall.<br>
+          A better solution instead of depending on the "it might get detected at least once in 2 frames" hope, I could add more images of the classes that have very less labels to balance the dataset and train the model again. That will defnitely get the model to near perfect results, given the simiplicity of the classes.
+          <img class="doc" src="./6.png"></li>
+      </ul>
+    </section>
+
+    <section id="section03">
+      <h3>Exporting model to IMX500</h3>
+      <ul>
+        <li><a class="links2" href="">ok</a> → </li>
+        <li><a class="links2" href="">ok</a> → </li>
+        <li><a class="links2" href="">ok</a> → </li>
+      </ul>
+    </section>
+
+    <section id="section04">
+      <h3>Testing model on RPi Zero 2 W</h3>
+      <ul>
+        <li>After the zip file was extracted, I ran the train script from the official <a class="links2" href="https://docs.ultralytics.com/integrations/sony-imx500/#usage-examples">ultralytics documentation</a>. This code produces a <code>packerOut.zip</code> file.</li>
+        <li>The packer.out file is then moved to the RPi. In my case, I hosted a quick web server using <code>python -m http.server</code> and downloaded it on my raspberry pi.</li>
+        <li>Folder structure on RPi<br>
+          <code>yolo11n_imx_model</code><br>
+          <code>├── dnnParams.xml</code><br>
+          <code>├── labels.txt</code> → Has to be manually created (<a class="links2" href="https://github.com/bhu1-103/imx-500/blob/main/models/game-agent-01/yolo11n_imx_model/labels.txt">example</a>), other files will be generated automatically.<br>
+          <code>├── packerOut.zip</code> → Has to be placed in the right directory.<br>
+          <code>├── model_imx.on</code><br>
+          <code>├── model_imx_MemoryReport.json</code><br>
+          <code>└── model_imx.pbtxt</code></code><br></li>
+        <li><a class="links2" href="">ok</a> → </li>
+        <li><a class="links2" href="">ok</a> → </li>
+        <li><a class="links2" href="">ok</a> → </li>
+      </ul>
+    </section>
+
+    <section id="section05">
+      <h3>Exporting model to IMX500</h3>
+      <ul>
+        <li><a class="links2" href="">ok</a> → </li>
+        <li><a class="links2" href="">ok</a> → </li>
+        <li><a class="links2" href="">ok</a> → </li>
+      </ul>
+    </section>
+
+    <section id="section06">
+      <h3>Exporting model to IMX500</h3>
+      <ul>
+        <li><a class="links2" href="">ok</a> → </li>
+        <li><a class="links2" href="">ok</a> → </li>
+        <li><a class="links2" href="">ok</a> → </li>
+      </ul>
+    </section>
+
+    <section id="section07">
+      <h3>Exporting model to IMX500</h3>
       <ul>
         <li><a class="links2" href="">ok</a> → </li>
         <li><a class="links2" href="">ok</a> → </li>
