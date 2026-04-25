@@ -63,6 +63,8 @@ body {
   font-family: 'Bricolage', system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
+  line-height: 2;
+  letter-spacing: 0.025em;
   cursor: var(--cursor-normal);
 }
 
