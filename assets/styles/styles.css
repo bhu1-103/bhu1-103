@@ -7,7 +7,7 @@
   --balance: #20C498;
   --counter: #99ccff;
   --refresh: #DDEE22;
-  --data: #FF8FAB;
+  --peach: #FF8FAB;
   --cursor-normal: url('../cursors/cursor-normal.png') 16 4, auto;
   --cursor-click: url('../cursors/cursor-click.png') 16 5, pointer;
 }
@@ -565,11 +565,9 @@ code {
 
 mark {
   background: transparent;
-  color: var(--accent);
-  text-shadow: 
-      0px 0px 0px var(--data),
-      -1px -1px 1px var(--data);
-
+  color: var(--peach);
+  font-style: italic;
+  font-weight: 700;
   letter-spacing: 0.5px;
 }
 
