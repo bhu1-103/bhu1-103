@@ -63,8 +63,6 @@ body {
   font-family: 'Bricolage', system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 2;
-  letter-spacing: 0.025em;
   cursor: var(--cursor-normal);
 }
 
@@ -173,11 +171,17 @@ h1, h2 {
 
 p {
   color: var(--muted);
-  line-height: 1.75;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
   max-width: none;
   margin-bottom: 16px;
   padding-left: 8px;
   padding-right: 8px;
+}
+
+section {
+  line-height: 1.5;
+  letter-spacing: 0.025em;
 }
 
 .project-preview .projects-btn {
@@ -333,6 +337,7 @@ p {
   overflow: hidden;
   z-index: 0;
   flex-shrink: 0;
+  transition: color 0.3s ease;
 }
 
 .projects-btn:before {
@@ -565,6 +570,11 @@ ul li::marker {
 
 ul {
   padding-left: 20px;
+  line-height: 1.5;
+}
+
+ol {
+  line-height: 1.5;
 }
 
 img.doc {
@@ -647,7 +657,7 @@ img.doc {
   }
   .chat-bubble p {
     margin: 2;
-    line-height: 1.3;
+    line-height: 1.2;
     font-size: 0.95rem;
   }
   .links2 {
