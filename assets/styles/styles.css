@@ -584,6 +584,42 @@ ul {
 
 ol {
   line-height: 1.5;
+  list-style: none;
+  counter-reset: counter;
+  padding-left: 10px;
+  padding-left: 0;
+  margin: 2rem 0;
+}
+
+ol li {
+  counter-increment: counter;
+  position: relative;
+  padding-left: 3rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  color: var(--muted);/
+}
+
+ol li::before {
+  content: counter(counter);
+  position: absolute;
+  left: 0;
+  top: 0;
+  
+  width: 2rem;
+  height: 2rem;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-code);
+  color: var(--accent);
+  border: 1px solid #333;
+  border-radius: 6px;
+}
+
+ol li:hover::before {
+  border-color: var(--peach);
 }
 
 .toc-list {
