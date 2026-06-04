@@ -1,16 +1,12 @@
-## Hi there 👋
+# bhu1
 
-<!--
-**bhu1-103/bhu1-103** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+```
+Usability          [░░░░░░░░░░]  1%
+Portability        [█░░░░░░░░░]  6%
+Reliability        [█░░░░░░░░░] 13%
+Novelty            [██░░░░░░░░] 15%
+Hacks/Workarounds  [███░░░░░░░] 25%
+Fun                [████░░░░░░] 30%
+```
 
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+check out my website here -> [8hu.one](https://8hu.one)
