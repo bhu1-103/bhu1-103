@@ -1,8 +1,8 @@
 # bhu1's github
 
 ```
-Usability          [░░░░░░░░░░]  1%
-Portability        [█░░░░░░░░░]  6%
+Usability          [░░░░░░░░░░] -1%
+Portability        [█░░░░░░░░░]  7%
 Reliability        [█░░░░░░░░░] 13%
 Novelty            [██░░░░░░░░] 15%
 Hacks/Workarounds  [███░░░░░░░] 25%
